@@ -7,10 +7,12 @@ public class PlayerCharacter : MonoBehaviour
     public int goldCount = 0;
 
     private CharacterMovement movementComponent;
+    private CameraController cameraController; 
 
     void Start()
     {
         movementComponent = GetComponent<CharacterMovement>();
+      //  cameraController = FindObjectOfType<CameraController>();
     }
 
     void Update()

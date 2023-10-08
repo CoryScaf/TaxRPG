@@ -1,5 +1,5 @@
 using UnityEngine;
-using System;
+using System.Collections;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class CharacterMovement : MonoBehaviour
@@ -7,13 +7,14 @@ public class CharacterMovement : MonoBehaviour
     public float maxMoveSpeed = 5f;
     public float acceleration = 2f;
     public float deceleration = 3f;
-    public float rollSpeed = 8f; // Independent roll speed
+    public float rollSpeed = 8f;
     public float rollDuration = 0.5f;
 
     private Rigidbody2D rb;
     private bool isRolling = false;
     private Vector2 lastMoveDirection;
     public Vector2 currentVelocity;
+    private bool shouldClampPosition = false; // Add this
 
     void Start()
     {
@@ -30,19 +31,18 @@ public class CharacterMovement : MonoBehaviour
 
     private void Walk(Vector2 direction)
     {
-        currentVelocity = rb.velocity;// makes sure currentvelocity doesn't get disconnected from the players actual velocity
+        currentVelocity = rb.velocity;
         if (direction != Vector2.zero)
         {
-            lastMoveDirection = direction;// update for roll
-            currentVelocity = Vector2.ClampMagnitude(Vector2.MoveTowards(currentVelocity, direction+currentVelocity, 100 * Time.deltaTime),maxMoveSpeed);
+            lastMoveDirection = direction;
+            currentVelocity = Vector2.ClampMagnitude(Vector2.MoveTowards(currentVelocity, direction + currentVelocity, 100 * Time.deltaTime), maxMoveSpeed);
         }
         else
         {
-            Debug.Log(currentVelocity);
-           currentVelocity = Vector2.MoveTowards(currentVelocity, Vector2.zero, deceleration * Time.deltaTime);
-           Debug.Log(currentVelocity);
+            currentVelocity = Vector2.MoveTowards(currentVelocity, Vector2.zero, deceleration * Time.deltaTime);
         }
         rb.velocity = currentVelocity;
+        shouldClampPosition = true; // Mark for clamping
     }
 
     public void Roll()
@@ -53,14 +53,24 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
-    private System.Collections.IEnumerator RollCoroutine()
+    private IEnumerator RollCoroutine()
     {
         isRolling = true;
-        rb.velocity = Vector2.zero;//remove any speed you currently have
+        rb.velocity = Vector2.zero;
         Vector2 rollVelocity = lastMoveDirection.normalized * rollSpeed;
         rb.velocity = rollVelocity;
         yield return new WaitForSeconds(rollDuration);
-        rb.velocity = Vector2.zero;//stops player after a roll
+        rb.velocity = Vector2.zero;
+        shouldClampPosition = true; // Mark for clamping after roll ends
         isRolling = false;
+    }
+
+    private void FixedUpdate()
+    {
+        if(shouldClampPosition)
+        {
+            rb.position = PixelPerfectUtility.ClampToPixelGrid(rb.position);
+            shouldClampPosition = false;
+        }
     }
 }

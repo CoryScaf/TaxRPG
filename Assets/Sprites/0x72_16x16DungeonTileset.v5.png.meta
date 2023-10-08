@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -6710,7 +6710,7 @@ TextureImporter:
         x: 240
         y: 0
         width: 16
-        height: 21
+        height: 20
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -6718,8 +6718,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 20b9ef09fa2915943b9a25c07723d456
-      internalID: -1740068130
+      spriteID: 076405a426e48254d9f56bf1bd6fd97d
+      internalID: 788225168
       vertices: []
       indices: 
       edges: []
@@ -7049,7 +7049,7 @@ TextureImporter:
       0x72_16x16DungeonTileset.v5_97: -1805304734
       0x72_16x16DungeonTileset.v5_98: -377593903
       0x72_16x16DungeonTileset.v5_99: 1581269291
-      player: -1740068130
+      player: 788225168
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
