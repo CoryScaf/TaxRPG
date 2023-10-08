@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 0x72_16x16DungeonTileset.v5_0
+      name: player
       rect:
         serializedVersion: 2
         x: 240
@@ -118,7 +118,7 @@ TextureImporter:
         width: 16
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -141,7 +141,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      0x72_16x16DungeonTileset.v5_0: -1740068130
+      player: -1740068130
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
