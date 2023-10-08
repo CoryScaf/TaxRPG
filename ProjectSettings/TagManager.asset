@@ -38,6 +38,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3533906625
+    locked: 0
+  - name: Connector
+    uniqueID: 559983125
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
