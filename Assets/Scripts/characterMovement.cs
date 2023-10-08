@@ -12,8 +12,10 @@ public class CharacterMovement : MonoBehaviour
 
     private Rigidbody2D rb;
     private bool isRolling = false;
+    private float nextRollTime = 0f;  // Time when the next roll is permitted
+    public float rollDelay = 1f;      // Delay in seconds between rolls
     private Vector2 lastMoveDirection;
-    public Vector2 currentVelocity;
+    private Vector2 currentVelocity;
     private bool shouldClampPosition = false; // Add this
 
     void Start()
@@ -47,7 +49,8 @@ public class CharacterMovement : MonoBehaviour
 
     public void Roll()
     {
-        if (!isRolling && lastMoveDirection != Vector2.zero)
+        // Check if enough time has passed since the last roll
+        if (!isRolling && Time.time > nextRollTime && lastMoveDirection != Vector2.zero)
         {
             StartCoroutine(RollCoroutine());
         }
@@ -61,8 +64,8 @@ public class CharacterMovement : MonoBehaviour
         rb.velocity = rollVelocity;
         yield return new WaitForSeconds(rollDuration);
         rb.velocity = Vector2.zero;
-        shouldClampPosition = true; // Mark for clamping after roll ends
         isRolling = false;
+        nextRollTime = Time.time + rollDelay;  // Set the time for the next possible roll
     }
 
     private void FixedUpdate()
