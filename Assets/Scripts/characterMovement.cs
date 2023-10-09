@@ -11,7 +11,7 @@ public class CharacterMovement : MonoBehaviour
     public float rollDuration = 0.5f;
 
     private Rigidbody2D rb;
-    private bool isRolling = false;
+    public bool isRolling = false;
     private float nextRollTime = 0f;  // Time when the next roll is permitted
     public float rollDelay = 1f;      // Delay in seconds between rolls
     private Vector2 lastMoveDirection;
