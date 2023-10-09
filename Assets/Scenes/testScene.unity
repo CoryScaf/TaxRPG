@@ -1117,6 +1117,8 @@ MonoBehaviour:
   offset: {x: 0, y: 0}
   smoothSpeed: 0.125
   lookAheadFactor: 0.5
+  shakeDuration: 0.025
+  shakeMagnitude: 0.3
 --- !u!213 &2077153455
 Sprite:
   m_ObjectHideFlags: 0
@@ -1391,6 +1393,10 @@ PrefabInstance:
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6506994298342554512, guid: 0960c4042668d8f4ca9e42836802a3b3, type: 3}
+      propertyPath: cameraController
+      value: 
+      objectReference: {fileID: 1793365149}
     - target: {fileID: 6506994298342554512, guid: 0960c4042668d8f4ca9e42836802a3b3, type: 3}
       propertyPath: knockbackDuration
       value: 0.3

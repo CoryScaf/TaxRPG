@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -9,6 +11,9 @@ public class CameraController : MonoBehaviour
     private Vector2 lookAhead;
     private Vector2 targetLookAhead;
     private Vector2 currentVelocity;
+    public float shakeDuration = 0.5f;  // Duration of the shake effect
+    public float shakeMagnitude = 0.5f;  // Intensity of the shake effect
+    private float shakeInterval = 0.05f;  // Delay between each shake
 
     private bool shouldClampPosition = false;
 
@@ -32,5 +37,28 @@ public class CameraController : MonoBehaviour
         Vector2 moveDirection = target.GetComponent<Rigidbody2D>().velocity.normalized;
         targetLookAhead = moveDirection * lookAheadFactor;
         lookAhead = Vector2.Lerp(lookAhead, targetLookAhead, smoothSpeed);
+    }
+    public void TriggerShake()
+    {
+        StartCoroutine(ShakeCoroutine());
+    }
+    private IEnumerator ShakeCoroutine()
+    {
+        float elapsed = 0.0f;
+
+        Vector3 originalPosition = transform.position;
+
+        while (elapsed < shakeDuration)
+        {
+            float xOffset = Random.Range(-1f, 1f) * shakeMagnitude;
+            float yOffset = Random.Range(-1f, 1f) * shakeMagnitude;
+
+            transform.position = new Vector3(originalPosition.x + xOffset, originalPosition.y + yOffset, originalPosition.z);
+
+            elapsed += Time.deltaTime;
+            yield return new WaitForSeconds(shakeInterval);  // Wait for the shakeInterval duration before the next shake
+        }
+
+        transform.position = originalPosition;
     }
 }

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerCharacter : MonoBehaviour
 {
-
-
     private CharacterMovement movementComponent;
     private CameraController cameraController; 
     private PlayerStats playerStats; // Reference to the PlayerStats script
@@ -20,7 +18,10 @@ public class PlayerCharacter : MonoBehaviour
     void Start()
     {
         movementComponent = GetComponent<CharacterMovement>();
-      //  cameraController = FindObjectOfType<CameraController>();
+        cameraController = FindObjectOfType<CameraController>();
+        if(cameraController == null){
+             Debug.LogError("CameraController component missing on " + gameObject.name);
+        }
         playerStats = GetComponent<PlayerStats>();
         if (playerStats == null)
         {
@@ -66,7 +67,8 @@ public class PlayerCharacter : MonoBehaviour
 
                 // Call TakeDamage method from PlayerStats
                 playerStats.TakeDamage(attackValue, knockbackDirection);
-                            
+                 //shake camera
+                 cameraController.TriggerShake();           
                 // Start the knockback effect
                 StartKnockbackEffect();
             }
