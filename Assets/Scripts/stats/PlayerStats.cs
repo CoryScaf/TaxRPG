@@ -12,50 +12,50 @@ public class PlayerStats : CharacterStats
 
     private float regenTimer = 0f; // A timer to track health regen intervals
 
+    public float invincibilityDuration = 2f; // Duration of invincibility in seconds
+    public float knockbackForce = 5f; // Force of the knockback
+
     // Reference to the HealthBar slider on the canvas
     public Slider healthBar;
+
+    private Rigidbody2D rb;
+    private PlayerCharacter playerCharacter; 
 
     protected override void Awake()
     {
         base.Awake();
 
+        rb = GetComponent<Rigidbody2D>();
+        playerCharacter = GetComponent<PlayerCharacter>();
         if (healthBar == null)
         {
             Debug.LogError("HealthBar Slider is not set on " + gameObject.name);
             return;
         }
 
-        // Initialize the health bar's max value and current value
         healthBar.maxValue = maxHealth;
         healthBar.value = currentHealth;
     }
-    void Update()
-    {
-        HandleHealthRegen();
-    }
 
-    // Override the TakeDamage method to update the health bar
-    public override void TakeDamage(int damage)
+    public void TakeDamage(int damage, Vector2 knockbackDirection)
     {
-        base.TakeDamage(damage);  // Call the original TakeDamage functionality
+        if (playerCharacter.IsInvincible()) return; // Don't take damage if invincible
 
-        // Update the health bar value
+        base.TakeDamage(damage);
         healthBar.value = currentHealth;
-    }
-    // New method for handling health regeneration
-    private void HandleHealthRegen()
-    {
-        if (currentHealth < maxHealth)
+
+        // Apply the knockback
+        rb.velocity = Vector2.zero;
+        rb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Force);
+
+
+        // Start invincibility
+        if (playerCharacter)
         {
-            regenTimer += Time.deltaTime;
-            if (regenTimer >= 1f)
-            {
-                currentHealth += regenRate;
-                currentHealth = Mathf.Min(currentHealth, maxHealth); // Ensure we don't exceed max health
-                regenTimer = 0f;
-            }
+            playerCharacter.BecomeInvincible(invincibilityDuration);
         }
     }
+
 
     // Overriding the TakeDamage method to incorporate critical hits
     public void Attack(CharacterStats target)

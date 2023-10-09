@@ -14,6 +14,9 @@ public class CharacterMovement : MonoBehaviour
     public bool isRolling = false;
     private float nextRollTime = 0f;  // Time when the next roll is permitted
     public float rollDelay = 1f;      // Delay in seconds between rolls
+    private PlayerCharacter playerCharacter;
+    public float rollInvincibilityDuration = 0.5f;  // Duration of invincibility during a roll
+
     private Vector2 lastMoveDirection;
     private Vector2 currentVelocity;
     private bool shouldClampPosition = false; // Add this
@@ -21,6 +24,11 @@ public class CharacterMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerCharacter = GetComponent<PlayerCharacter>();
+        if (!playerCharacter)
+        {
+            Debug.LogError("PlayerCharacter script not found on this GameObject!");
+        }
     }
 
     public void MoveCharacter(Vector2 direction)
@@ -62,6 +70,12 @@ public class CharacterMovement : MonoBehaviour
         rb.velocity = Vector2.zero;
         Vector2 rollVelocity = lastMoveDirection.normalized * rollSpeed;
         rb.velocity = rollVelocity;
+
+
+        if (playerCharacter)
+        {
+            playerCharacter.BecomeInvincible(rollInvincibilityDuration);
+        }
         yield return new WaitForSeconds(rollDuration);
         rb.velocity = Vector2.zero;
         isRolling = false;
