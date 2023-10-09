@@ -65,7 +65,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: sword
+    path: swordPivot/sword
   m_PositionCurves: []
   m_ScaleCurves: []
   m_FloatCurves:
@@ -95,7 +95,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: sword/0x72_16x16DungeonTileset.v5_14
+    path: swordPivot/sword/0x72_16x16DungeonTileset.v5_14
     classID: 212
     script: {fileID: 0}
     flags: 0
@@ -108,7 +108,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 2598749967
+      path: 3252270448
       attribute: 4
       script: {fileID: 0}
       typeID: 4
@@ -117,7 +117,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 403229799
+      path: 2157281878
       attribute: 3305885265
       script: {fileID: 0}
       typeID: 212
@@ -200,7 +200,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.x
-    path: sword
+    path: swordPivot/sword
     classID: 4
     script: {fileID: 0}
     flags: 16
@@ -257,7 +257,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.y
-    path: sword
+    path: swordPivot/sword
     classID: 4
     script: {fileID: 0}
     flags: 16
@@ -314,7 +314,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.z
-    path: sword
+    path: swordPivot/sword
     classID: 4
     script: {fileID: 0}
     flags: 16
@@ -344,7 +344,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: sword/0x72_16x16DungeonTileset.v5_14
+    path: swordPivot/sword/0x72_16x16DungeonTileset.v5_14
     classID: 212
     script: {fileID: 0}
     flags: 0
@@ -357,7 +357,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: sword
+    path: swordPivot/sword
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -369,7 +369,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: sword
+    path: swordPivot/sword
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -381,7 +381,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: sword
+    path: swordPivot/sword
     classID: 4
     script: {fileID: 0}
     flags: 0

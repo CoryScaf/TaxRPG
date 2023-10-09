@@ -5,9 +5,8 @@ using UnityEngine;
 public class CharacterCombat : MonoBehaviour
 {
     // References
-    private CharacterMovement characterMovement;
     private Animator animator;
-
+    public GameObject sword;
     // Events (for possible interactions with other systems or UI feedback)
     public delegate void OnAttackHandler();
     public event OnAttackHandler OnAttack;
@@ -21,12 +20,6 @@ public class CharacterCombat : MonoBehaviour
 
     private void Start()
     {
-        characterMovement = GetComponent<CharacterMovement>();
-        if (!characterMovement)
-        {
-            Debug.LogError("CharacterMovement not found on the same GameObject!");
-        }
-
         animator = GetComponent<Animator>();
         if (!animator)
         {
@@ -47,6 +40,15 @@ public class CharacterCombat : MonoBehaviour
         {
             comboCounter = 0;
         }
+
+        //vector from player to mouse
+        Vector2 lookDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;  // Subtract 90 degrees to account for the y-axis default orientation
+
+
+        // Assuming the swordPivot is a reference to the GameObject that the sword is a child of
+        sword.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, angle);
+
         
         comboCounter++;
         
