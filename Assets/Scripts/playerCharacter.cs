@@ -6,11 +6,16 @@ public class PlayerCharacter : MonoBehaviour
 
     private CharacterMovement movementComponent;
     private CameraController cameraController; 
-
+    private PlayerStats playerStats; // Reference to the PlayerStats script
     void Start()
     {
         movementComponent = GetComponent<CharacterMovement>();
       //  cameraController = FindObjectOfType<CameraController>();
+        playerStats = GetComponent<PlayerStats>();
+        if (playerStats == null)
+        {
+            Debug.LogError("PlayerStats component missing on " + gameObject.name);
+        }
     }
 
     void Update()
@@ -28,7 +33,29 @@ public class PlayerCharacter : MonoBehaviour
             GetComponent<CharacterCombat>().Attack();
         }
     }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // Check if the collider belongs to a DamagingObject
+        if (other.CompareTag("DamagingObject"))
+        {
+            // Get the attack stat from the DamagingObject
+            CharacterStats attackerStats = other.GetComponent<CharacterStats>();
+            if (attackerStats)
+            {
+                int attackValue = attackerStats.attack;
 
+                // Call TakeDamage method from PlayerStats
+                playerStats.TakeDamage(attackValue);
+
+                // Print the current health after the hit
+                Debug.Log("Current Health: " + playerStats.currentHealth);
+            }
+            else
+            {
+                Debug.LogError("DamagingObject missing CharacterStats component.");
+            }
+        }
+    }
     public void CollectGold(int amount)
     {
        // goldCount += amount;
@@ -46,18 +73,6 @@ public class PlayerCharacter : MonoBehaviour
        // }
     }
 
-    public void ModifyHealth(float amount)
-    {
-       // health += amount;
-       // if (health <= 0)
-        //{
-          //  health = 0;
-           // Player death logic
-       // }
-    }
 
-    public void Attack()
-    {
-        // Attack logic
-    }
+
 }
