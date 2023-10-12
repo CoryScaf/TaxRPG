@@ -38,12 +38,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Background
+  - name: Background_Floor
     uniqueID: 3533906625
     locked: 0
-  - name: Connector
-    uniqueID: 559983125
+  - name: Background_Floor_Items
+    uniqueID: 859072595
+    locked: 0
+  - name: Background_Walls
+    uniqueID: 3801028551
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Foreground_Walls
+    uniqueID: 4034321693
     locked: 0
