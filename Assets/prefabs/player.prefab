@@ -279,7 +279,7 @@ MonoBehaviour:
   maxMoveSpeed: 8
   acceleration: 350
   deceleration: 350
-  rollSpeed: 12
+  rollSpeed: 16
   rollDuration: 0.2
   isRolling: 0
   rollDelay: 0.2

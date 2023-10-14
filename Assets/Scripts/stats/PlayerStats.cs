@@ -30,11 +30,7 @@ public class PlayerStats : CharacterStats
     public TextMeshProUGUI goldText; // Or use "public Text goldText;" if you're using Unity's default Text
     protected override void Start()
     {
-<<<<<<< HEAD
         base.Start();
-=======
-        base.Awake();
->>>>>>> e26953c8c91ab722e841baf4320bb60ddf9da04a
 
         rb = GetComponent<Rigidbody2D>();
         playerCharacter = GetComponent<PlayerCharacter>();
