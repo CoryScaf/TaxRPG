@@ -188,7 +188,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0960c4042668d8f4ca9e42836802a3b3, type: 3}
---- !u!1001 &1199111344
+--- !u!1001 &1483723968
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -198,11 +198,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 621063504737806841, guid: ff9d2fd8bfc76ca4aa29b517b8349d2a, type: 3}
       propertyPath: m_Name
-      value: Main Camera (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 621063504737806841, guid: ff9d2fd8bfc76ca4aa29b517b8349d2a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      value: Main Camera
       objectReference: {fileID: 0}
     - target: {fileID: 8146708198443651525, guid: ff9d2fd8bfc76ca4aa29b517b8349d2a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -312,4 +308,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 1855371197322527895}
   - {fileID: 175567025}
-  - {fileID: 1199111344}
+  - {fileID: 1483723968}

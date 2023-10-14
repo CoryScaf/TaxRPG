@@ -22,11 +22,7 @@ public class PlayerCharacter : MonoBehaviour
     void Start()
     {
         movementComponent = GetComponent<CharacterMovement>();
-        cameraController = FindObjectOfType<CameraController>();
-        if (cameraController == null)
-        {
-            Debug.LogError("CameraController component missing on " + gameObject.name);
-        }
+
         playerStats = GetComponent<PlayerStats>();
         if (playerStats == null)
         {

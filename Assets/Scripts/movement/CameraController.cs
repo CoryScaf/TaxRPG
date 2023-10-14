@@ -16,29 +16,49 @@ public class CameraController : MonoBehaviour
     private float shakeInterval = 0.05f;  // Delay between each shake
 
     private bool shouldClampPosition = false;
-    void Awake(){
-        DontDestroyOnLoad(this.gameObject);
+    void Awake()
+    {
+        if (!target)
+        {
+            // Try to find the player using its tag
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player)
+            {
+                target = player.transform;
+            }
+            else
+            {
+                Debug.LogError("No player found in the scene!");
+            }
+        }
     }
     private void FixedUpdate()
     {
-        Vector2 desiredPosition = (Vector2)target.position + offset + lookAhead;
-        Vector2 smoothedPosition = Vector2.SmoothDamp((Vector2)transform.position, desiredPosition, ref currentVelocity, smoothSpeed);
-        transform.position = new Vector3(smoothedPosition.x, smoothedPosition.y, transform.position.z);
-        shouldClampPosition = true;
+        // Ensure target is set before proceeding
+        if (target)
+        {
+            Vector2 desiredPosition = (Vector2)target.position + offset + lookAhead;
+            Vector2 smoothedPosition = Vector2.SmoothDamp((Vector2)transform.position, desiredPosition, ref currentVelocity, smoothSpeed);
+            transform.position = new Vector3(smoothedPosition.x, smoothedPosition.y, transform.position.z);
+            shouldClampPosition = true;
+        }
     }
 
     private void LateUpdate()
     {
-        if(shouldClampPosition)
+        if (target)
         {
-            transform.position = PixelPerfectUtility.ClampToPixelGrid(transform.position);
-            shouldClampPosition = false;
-        }
+            if (shouldClampPosition)
+            {
+                transform.position = PixelPerfectUtility.ClampToPixelGrid(transform.position);
+                shouldClampPosition = false;
+            }
 
-        // Look ahead logic
-        Vector2 moveDirection = target.GetComponent<Rigidbody2D>().velocity.normalized;
-        targetLookAhead = moveDirection * lookAheadFactor;
-        lookAhead = Vector2.Lerp(lookAhead, targetLookAhead, smoothSpeed);
+            // Look ahead logic
+            Vector2 moveDirection = target.GetComponent<Rigidbody2D>().velocity.normalized;
+            targetLookAhead = moveDirection * lookAheadFactor;
+            lookAhead = Vector2.Lerp(lookAhead, targetLookAhead, smoothSpeed);
+        }
     }
     public void TriggerShake()
     {
