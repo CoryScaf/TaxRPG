@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SpawnController : MonoBehaviour
@@ -23,7 +24,7 @@ public class SpawnController : MonoBehaviour
     void Update()
     {
         if(curWave < waveCount) {
-            foreach(GameObject spawned in spawnedEnemies) {
+            foreach(GameObject spawned in spawnedEnemies.ToList()) {
                 if(spawned != null) return;
                 else spawnedEnemies.Remove(spawned);
             }
@@ -39,7 +40,7 @@ public class SpawnController : MonoBehaviour
             curWave++;
         }
         else {
-            foreach(GameObject spawned in spawnedEnemies) {
+            foreach(GameObject spawned in spawnedEnemies.ToList()) {
                 if(spawned != null) return;
             }
 

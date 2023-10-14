@@ -9,6 +9,7 @@ public class CharacterMovement : MonoBehaviour
     public float deceleration = 3f;
     public float rollSpeed = 8f;
     public float rollDuration = 0.5f;
+    private bool isFacingRight = true;  // By default, we assume the character is facing right
 
     private Rigidbody2D rb;
     public bool isRolling = false;
@@ -30,6 +31,14 @@ public class CharacterMovement : MonoBehaviour
             Debug.LogError("PlayerCharacter script not found on this GameObject!");
         }
     }
+    private void FlipCharacter()
+    {
+        isFacingRight = !isFacingRight;  // Toggle the facing direction
+        Vector3 characterScale = transform.localScale;
+        characterScale.x *= -1;  // Multiply the x scale by -1 to flip the character
+        transform.localScale = characterScale;
+    }
+
 
     public void MoveCharacter(Vector2 direction)
     {
@@ -45,6 +54,17 @@ public class CharacterMovement : MonoBehaviour
         if (direction != Vector2.zero)
         {
             lastMoveDirection = direction;
+
+            // Check for direction change and flip character if needed
+            if (direction.x > 0 && !isFacingRight)
+            {
+                FlipCharacter();
+            }
+            else if (direction.x < 0 && isFacingRight)
+            {
+                FlipCharacter();
+            }
+
             currentVelocity = Vector2.ClampMagnitude(Vector2.MoveTowards(currentVelocity, direction + currentVelocity, 100 * Time.deltaTime), maxMoveSpeed);
         }
         else
@@ -52,8 +72,9 @@ public class CharacterMovement : MonoBehaviour
             currentVelocity = Vector2.MoveTowards(currentVelocity, Vector2.zero, deceleration * Time.deltaTime);
         }
         rb.velocity = currentVelocity;
-        shouldClampPosition = true; // Mark for clamping
+        shouldClampPosition = true;  // Mark for clamping
     }
+
 
     public void Roll()
     {
@@ -84,14 +105,15 @@ public class CharacterMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(shouldClampPosition)
+        if (shouldClampPosition)
         {
             rb.position = PixelPerfectUtility.ClampToPixelGrid(rb.position);
             shouldClampPosition = false;
         }
     }
 
-    public bool isCurrentlyRolling() {
+    public bool isCurrentlyRolling()
+    {
         return isRolling;
     }
 }

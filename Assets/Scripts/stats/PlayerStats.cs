@@ -28,6 +28,22 @@ public class PlayerStats : CharacterStats
     private PlayerCharacter playerCharacter;
     [Header("UI References")]
     public TextMeshProUGUI goldText; // Or use "public Text goldText;" if you're using Unity's default Text
+    protected override void Awake()
+    {
+        //DontDestroyOnLoad(this.gameObject);
+        base.Awake();
+
+        rb = GetComponent<Rigidbody2D>();
+        playerCharacter = GetComponent<PlayerCharacter>();
+        if (healthBar == null)
+        {
+            Debug.LogError("HealthBar Slider is not set on " + gameObject.name);
+            return;
+        }
+
+        healthBar.maxValue = maxHealth;
+        healthBar.value = currentHealth;
+    }
 
     private void Start()
     {
@@ -72,21 +88,7 @@ public class PlayerStats : CharacterStats
         tempRegenRate = 0;
     }
 
-    protected override void Awake()
-    {
-        base.Awake();
 
-        rb = GetComponent<Rigidbody2D>();
-        playerCharacter = GetComponent<PlayerCharacter>();
-        if (healthBar == null)
-        {
-            Debug.LogError("HealthBar Slider is not set on " + gameObject.name);
-            return;
-        }
-
-        healthBar.maxValue = maxHealth;
-        healthBar.value = currentHealth;
-    }
 
     public void TakeDamage(int damage, Vector2 knockbackDirection)
     {
