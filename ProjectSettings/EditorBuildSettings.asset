@@ -21,6 +21,12 @@ EditorBuildSettings:
     path: Assets/Scenes/CombatScene3.unity
     guid: adddab27db7491b40886a26a655b60f2
   - enabled: 1
+    path: Assets/Scenes/ShopScene.unity
+    guid: 00df823ef15cdc64da9d3494b8d9dde1
+  - enabled: 1
+    path: Assets/Scenes/BossScene.unity
+    guid: 4427eee31940aae49a4b0fb77ab10743
+  - enabled: 1
     path: Assets/Scenes/lifeLost.unity
     guid: d2d930ab041b4d14db43fc8946400166
   - enabled: 1

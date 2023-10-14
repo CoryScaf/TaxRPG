@@ -22,11 +22,7 @@ public class PlayerCharacter : MonoBehaviour
     void Start()
     {
         movementComponent = GetComponent<CharacterMovement>();
-        cameraController = FindObjectOfType<CameraController>();
-        if (cameraController == null)
-        {
-            Debug.LogError("CameraController component missing on " + gameObject.name);
-        }
+
         playerStats = GetComponent<PlayerStats>();
         if (playerStats == null)
         {
@@ -71,10 +67,12 @@ public class PlayerCharacter : MonoBehaviour
         if (playerStats)
         {
             playerStats.currentHealth += amount;
+           
             if (playerStats.currentHealth > playerStats.maxHealth)
             {
                 playerStats.currentHealth = playerStats.maxHealth;
             }
+            playerStats.healthBar.value = playerStats.currentHealth;
         }
     }
     private void OnTriggerEnter2D(Collider2D other)

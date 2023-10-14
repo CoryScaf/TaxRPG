@@ -22,12 +22,12 @@ public class StatShop : MonoBehaviour
     private void Start()
     {
 
-        // playerStats = FindObjectOfType<PlayerStats>();
-        // if (!playerStats)
-        // {
-        //     Debug.LogError("PlayerStats not found in the scene!");
-        //     return;
-        // }
+        playerStats = FindObjectOfType<PlayerStats>();
+        if (!playerStats)
+        {
+            Debug.LogError("PlayerStats not found in the scene!");
+            return;
+        }
         GenerateShopItems();
         DisplayPlayerStats();
     }
