@@ -2513,14 +2513,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level4Chest
       objectReference: {fileID: 0}
-    - target: {fileID: 5187498185219649053, guid: 0359cb19a9309db46985635eac246fa5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 8246924299743434992}
-    - target: {fileID: 5187498185219649053, guid: 0359cb19a9309db46985635eac246fa5, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: HandleEncounter
-      objectReference: {fileID: 0}
     - target: {fileID: 6355184835262135286, guid: 0359cb19a9309db46985635eac246fa5, type: 3}
       propertyPath: children.Array.data[0]
       value: 
@@ -2710,14 +2702,6 @@ PrefabInstance:
       propertyPath: children.Array.data[0]
       value: 
       objectReference: {fileID: 7112422153811598311}
-    - target: {fileID: 7658037423420445416, guid: dd15c354fe1974248bdb07b3a9040bc6, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 9003310190096977706}
-    - target: {fileID: 7658037423420445416, guid: dd15c354fe1974248bdb07b3a9040bc6, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: HandleEncounter
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2825,14 +2809,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6483088470348692939}
     m_Modifications:
-    - target: {fileID: 2910773736970902454, guid: 15a845c5e8f46b843a73b9b1a272a11c, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 6787375295447703974}
-    - target: {fileID: 2910773736970902454, guid: 15a845c5e8f46b843a73b9b1a272a11c, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: HandleEncounter
-      objectReference: {fileID: 0}
     - target: {fileID: 6888969463299771347, guid: 15a845c5e8f46b843a73b9b1a272a11c, type: 3}
       propertyPath: m_Name
       value: Level3Sword
@@ -2946,14 +2922,6 @@ PrefabInstance:
       propertyPath: children.Array.data[0]
       value: 
       objectReference: {fileID: 7112422153811598311}
-    - target: {fileID: 8629190058462076095, guid: 3e8ca397361596c4dab22d30ac4b6718, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 8797473479200266898}
-    - target: {fileID: 8629190058462076095, guid: 3e8ca397361596c4dab22d30ac4b6718, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: HandleEncounter
-      objectReference: {fileID: 0}
     - target: {fileID: 9060175447273548745, guid: 3e8ca397361596c4dab22d30ac4b6718, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3134,14 +3102,6 @@ PrefabInstance:
     - target: {fileID: 1482672913055545573, guid: 051bd497b1b07ac42b6b0f6abbdefb27, type: 3}
       propertyPath: m_Name
       value: Level3Question
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034986838686093020, guid: 051bd497b1b07ac42b6b0f6abbdefb27, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 8230305777959925163}
-    - target: {fileID: 8034986838686093020, guid: 051bd497b1b07ac42b6b0f6abbdefb27, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: HandleEncounter
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3330,10 +3290,6 @@ PrefabInstance:
       propertyPath: children.Array.data[1]
       value: 
       objectReference: {fileID: 5905321026708453431}
-    - target: {fileID: 7580688315802063014, guid: 14ff767895cf3fa489cc9335fe21a52b, type: 3}
-      propertyPath: m_Interactable
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8023115237748594331, guid: 14ff767895cf3fa489cc9335fe21a52b, type: 3}
       propertyPath: m_Name
       value: Level1Empty
@@ -3439,14 +3395,6 @@ PrefabInstance:
     - target: {fileID: 2620812347458752907, guid: f7119d2b9ae324541ab276b6e5d6e10b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3731182923059301104, guid: f7119d2b9ae324541ab276b6e5d6e10b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 9179908558936372524}
-    - target: {fileID: 3731182923059301104, guid: f7119d2b9ae324541ab276b6e5d6e10b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: HandleEncounter
       objectReference: {fileID: 0}
     - target: {fileID: 3905367119419709861, guid: f7119d2b9ae324541ab276b6e5d6e10b, type: 3}
       propertyPath: children.Array.data[0]
@@ -3650,14 +3598,6 @@ PrefabInstance:
       propertyPath: children.Array.data[0]
       value: 
       objectReference: {fileID: 8246924299743434992}
-    - target: {fileID: 3530143404950121353, guid: 1758e082f6abef34dbc1672610cb635c, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 8408768125486708649}
-    - target: {fileID: 3530143404950121353, guid: 1758e082f6abef34dbc1672610cb635c, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: HandleEncounter
-      objectReference: {fileID: 0}
     - target: {fileID: 9030373602680454222, guid: 1758e082f6abef34dbc1672610cb635c, type: 3}
       propertyPath: m_Name
       value: Level3Heal (1)
@@ -3941,14 +3881,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7069179674493068619, guid: 6fea5c9ce4612f645934a07b72f936f8, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 8530462814197183685}
-    - target: {fileID: 7069179674493068619, guid: 6fea5c9ce4612f645934a07b72f936f8, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: HandleEncounter
-      objectReference: {fileID: 0}
     - target: {fileID: 8013893312632106790, guid: 6fea5c9ce4612f645934a07b72f936f8, type: 3}
       propertyPath: m_Name
       value: Level5Sword (1)
@@ -4169,6 +4101,10 @@ PrefabInstance:
       value: HandleEncounter
       objectReference: {fileID: 0}
     - target: {fileID: 9009831407533402239, guid: b65195a8e74a62d4b9ee644450ad2c84, type: 3}
+      propertyPath: encounterType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9009831407533402239, guid: b65195a8e74a62d4b9ee644450ad2c84, type: 3}
       propertyPath: children.Array.data[0]
       value: 
       objectReference: {fileID: 8530462814197183685}
@@ -4287,14 +4223,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6483088470348692939}
     m_Modifications:
-    - target: {fileID: 673300286155421903, guid: 139f47b54019cc94ca8d195424484bdf, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 7717894447324450044}
-    - target: {fileID: 673300286155421903, guid: 139f47b54019cc94ca8d195424484bdf, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: HandleEncounter
-      objectReference: {fileID: 0}
     - target: {fileID: 4695792382345828508, guid: 139f47b54019cc94ca8d195424484bdf, type: 3}
       propertyPath: children.Array.data[0]
       value: 

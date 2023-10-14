@@ -16,7 +16,9 @@ public class CameraController : MonoBehaviour
     private float shakeInterval = 0.05f;  // Delay between each shake
 
     private bool shouldClampPosition = false;
-
+    void Awake(){
+        DontDestroyOnLoad(this.gameObject);
+    }
     private void FixedUpdate()
     {
         Vector2 desiredPosition = (Vector2)target.position + offset + lookAhead;

@@ -71,10 +71,12 @@ public class PlayerCharacter : MonoBehaviour
         if (playerStats)
         {
             playerStats.currentHealth += amount;
+           
             if (playerStats.currentHealth > playerStats.maxHealth)
             {
                 playerStats.currentHealth = playerStats.maxHealth;
             }
+            playerStats.healthBar.value = playerStats.currentHealth;
         }
     }
     private void OnTriggerEnter2D(Collider2D other)
