@@ -233,6 +233,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &422569557 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7494112374455528567, guid: 0960c4042668d8f4ca9e42836802a3b3, type: 3}
+  m_PrefabInstance: {fileID: 7912595173075098989}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &485514246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -346,8 +351,9 @@ GameObject:
   - component: {fileID: 1162244922}
   - component: {fileID: 1162244921}
   - component: {fileID: 1162244923}
+  - component: {fileID: 1162244925}
   - component: {fileID: 1162244924}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: damage square
   m_TagString: DamagingObject
   m_Icon: {fileID: 0}
@@ -395,7 +401,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -1843727076, guid: cad95c447fbb5bb4c9e4f76abe6d0db1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -482,6 +488,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1162244925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162244920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b55ff1bd69c4284d82d74451e448066, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: 3
+  followRange: 6
+  detectionRange: 10
+  chargeSpeed: 5
+  chargeTime: 2
+  cooldownTime: 10
+  knockbackForce: 10
+  knockbackDuration: 0.5
 --- !u!114 &1198968727 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3738231737080368259, guid: 0960c4042668d8f4ca9e42836802a3b3, type: 3}
@@ -1343,7 +1369,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1701316956550805645, guid: 0960c4042668d8f4ca9e42836802a3b3, type: 3}
       propertyPath: m_Mass
-      value: 0.5498474
+      value: 4.6351604
       objectReference: {fileID: 0}
     - target: {fileID: 1701316956550805645, guid: 0960c4042668d8f4ca9e42836802a3b3, type: 3}
       propertyPath: m_UseAutoMass
@@ -1401,6 +1427,10 @@ PrefabInstance:
       propertyPath: knockbackDuration
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 8009592379552370922, guid: 0960c4042668d8f4ca9e42836802a3b3, type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 422569557}
     - target: {fileID: 8009592379552370922, guid: 0960c4042668d8f4ca9e42836802a3b3, type: 3}
       propertyPath: comboDelay
       value: 0.2

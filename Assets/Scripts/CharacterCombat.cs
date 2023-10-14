@@ -18,9 +18,12 @@ public class CharacterCombat : MonoBehaviour
     private bool canAttack = true;  // Controls whether a new attack can be initiated
     private bool isThirdSwingActive = false;  // Tracks if the third swing is currently playing
     private bool isCooldownActive = false;  // Tracks if the character is in the cooldown period after completing a combo
-
+    // Add a reference to the weapon's collider (this can be set in the inspector)
+    public GameObject weapon;
+    private PlayerStats playerStats;
     private void Start()
-    {
+    {   
+        playerStats =GetComponent<PlayerStats>();
         animator = GetComponent<Animator>();
         if (!animator)
         {
@@ -43,6 +46,18 @@ public class CharacterCombat : MonoBehaviour
         if (comboCounter == 1)
         {
             StopAllCoroutines();  // Stops any ongoing ComboResetDelay
+        }
+        // Setting the damage value on the weapon based on the comboCounter
+        if (weapon)
+        {
+            if (comboCounter == 3)
+            {
+                weapon.GetComponent<WeaponInfo>().SetDamage(playerStats.attack * 2); // Double damage for the 3rd swing
+            }
+            else
+            {
+                 weapon.GetComponent<WeaponInfo>().SetDamage(playerStats.attack); // Double damage for the 3rd swing
+            }
         }
         // Start a new ComboResetDelay coroutine
         StartCoroutine(ComboResetDelay());

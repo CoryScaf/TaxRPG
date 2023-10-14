@@ -6,11 +6,17 @@ using UnityEngine;
 
 public class EnemyStats : CharacterStats
 {
-    protected override void Die()
+    public override void TakeDamage(int damage)
     {
-        base.Die();
-        // Enemy-specific death behaviors
-        // e.g., Drop loot, give XP to the player, etc.
+        base.TakeDamage(damage);
+
+        // Enemy-specific damage logic, if any
+        // Note: The base.TakeDamage already reduces health and checks for death.
+        // Destroy the enemy object after handling the above logic.
+        if(this.currentHealth <= 0){
+            Destroy(gameObject);
+        }
     }
+
 }
 

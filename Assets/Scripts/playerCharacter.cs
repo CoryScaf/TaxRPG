@@ -5,11 +5,11 @@ using UnityEngine;
 public class PlayerCharacter : MonoBehaviour
 {
     private CharacterMovement movementComponent;
-    private CameraController cameraController; 
+    private CameraController cameraController;
     private PlayerStats playerStats; // Reference to the PlayerStats script
-    private bool isInvincible = false; 
-    
-    [HideInInspector] 
+    private bool isInvincible = false;
+
+    [HideInInspector]
     public bool isInKnockback = false;  // Indicates if the player is currently undergoing knockback
     public float knockbackDuration = 0.5f;  // Duration of the knockback effect
 
@@ -19,8 +19,9 @@ public class PlayerCharacter : MonoBehaviour
     {
         movementComponent = GetComponent<CharacterMovement>();
         cameraController = FindObjectOfType<CameraController>();
-        if(cameraController == null){
-             Debug.LogError("CameraController component missing on " + gameObject.name);
+        if (cameraController == null)
+        {
+            Debug.LogError("CameraController component missing on " + gameObject.name);
         }
         playerStats = GetComponent<PlayerStats>();
         if (playerStats == null)
@@ -37,8 +38,9 @@ public class PlayerCharacter : MonoBehaviour
     }
 
     void Update()
-    {   
-        if (isInKnockback  == false){
+    {
+        if (isInKnockback == false)
+        {
             Vector2 direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
             movementComponent.MoveCharacter(direction);
 
@@ -55,43 +57,41 @@ public class PlayerCharacter : MonoBehaviour
         }
 
     }
-    private void damageCalc(Collider2D other){
-            // Get the attack stat from the DamagingObject
-            CharacterStats attackerStats = other.GetComponent<CharacterStats>();
-            if (attackerStats)
-            {
-                int attackValue = attackerStats.attack;
-
-                // Calculate knockback direction based on attacker's position
-                Vector2 knockbackDirection = (transform.position - other.transform.position).normalized;
-
-                // Call TakeDamage method from PlayerStats
-                playerStats.TakeDamage(attackValue, knockbackDirection);
-                 //shake camera
-                 cameraController.TriggerShake();           
-                // Start the knockback effect
-                StartKnockbackEffect();
-            }
-            else
-            {
-                Debug.LogError("DamagingObject missing CharacterStats component.");
-            }
-    }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Check if the collider belongs to a DamagingObject
-        if (other.CompareTag("DamagingObject"))
+        // Only trigger this logic if the collision is on the main player object and NOT on any child objects (like the sword).
+
+        if (other.CompareTag("DamagingObject") && this.CompareTag("CharacterWeapon") != true)
         {
-            damageCalc(other);
+            DamageCalc(other);
         }
     }
-    private void OnTriggerStay2D(Collider2D other)
+
+
+    public void DamageCalc(Collider2D other)
     {
-        if (other.CompareTag("DamagingObject") && !isInvincible)
+        // Retrieve the CharacterStats of the damaging object (like the enemy)
+        CharacterStats attackerStats = other.GetComponent<CharacterStats>();
+        if (attackerStats)
         {
-            damageCalc(other);
+            int damage = attackerStats.attack;
+            // Calculate knockback direction based on attacker's position
+            Vector2 knockbackDirection = (transform.position - other.transform.position).normalized;
+            // Handle player taking damage, knockback, etc. here
+
+            playerStats.TakeDamage(damage, knockbackDirection);
+            //shake camera
+            cameraController.TriggerShake();
+            // Start the knockback effect
+            StartKnockbackEffect();
+        }
+        else
+        {
+            Debug.LogError("CharacterStats component missing from the attacking object.");
         }
     }
+
+
     public void StartKnockbackEffect()
     {
         isInKnockback = true;
@@ -104,7 +104,7 @@ public class PlayerCharacter : MonoBehaviour
     {
         isInKnockback = false;
     }
-        public void BecomeInvincible(float invincibilityDuration)
+    public void BecomeInvincible(float invincibilityDuration)
     {
         if (!isInvincible)
         {
@@ -121,7 +121,7 @@ public class PlayerCharacter : MonoBehaviour
         {
             spriteRenderer.color = new Color(1f, 1f, 1f, 0f);  // Make sprite transparent
             yield return new WaitForSeconds(0.1f);
-            
+
             spriteRenderer.color = new Color(1f, 1f, 1f, 1f);  // Return sprite to original visibility
             yield return new WaitForSeconds(0.1f);
 
@@ -139,19 +139,19 @@ public class PlayerCharacter : MonoBehaviour
 
     public void CollectGold(int amount)
     {
-       // goldCount += amount;
+        // goldCount += amount;
     }
 
     public void PayTax(int amount)
     {
-       // if (amount <= goldCount)
-      //  {
-         //   goldCount -= amount;
-       // }
-       // else
-       // {
-            // Not enough gold to pay tax logic
-       // }
+        // if (amount <= goldCount)
+        //  {
+        //   goldCount -= amount;
+        // }
+        // else
+        // {
+        // Not enough gold to pay tax logic
+        // }
     }
 
 
