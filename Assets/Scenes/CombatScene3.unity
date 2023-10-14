@@ -240,6 +240,14 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 2942140979227461034, guid: 0960c4042668d8f4ca9e42836802a3b3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2942140979227461034, guid: 0960c4042668d8f4ca9e42836802a3b3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8285691008099892437, guid: 0960c4042668d8f4ca9e42836802a3b3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -287,13 +295,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8583251231623622557, guid: 0960c4042668d8f4ca9e42836802a3b3, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 226917643}
-    - targetCorrespondingSourceObject: {fileID: 8583251231623622557, guid: 0960c4042668d8f4ca9e42836802a3b3, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 226917644}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0960c4042668d8f4ca9e42836802a3b3, type: 3}
 --- !u!1 &96173292
 GameObject:
@@ -400,71 +402,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &134360322 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8285691008099892437, guid: 0960c4042668d8f4ca9e42836802a3b3, type: 3}
-  m_PrefabInstance: {fileID: 51545156}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &226917638 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8583251231623622557, guid: 0960c4042668d8f4ca9e42836802a3b3, type: 3}
-  m_PrefabInstance: {fileID: 51545156}
-  m_PrefabAsset: {fileID: 0}
---- !u!58 &226917643
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 226917638}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.4}
-  serializedVersion: 2
-  m_Radius: 0.4
---- !u!114 &226917644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 226917638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a82c9ddb3b85f04fa010003dd91fecc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerObject: {fileID: 0}
-  cameraObject: {fileID: 0}
-  pauseSeconds: 1
-  pauseSecondsBeforeMove: 0.05
-  returnToClosestHorizontal: 1
-  returnToClosestVertical: 0
-  displacement: 0.5
-  alternativeReturnPos: {x: 0, y: 0, z: 0}
 --- !u!1 &234115959
 GameObject:
   m_ObjectHideFlags: 0
@@ -1721,7 +1658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a82c9ddb3b85f04fa010003dd91fecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerObject: {fileID: 226917638}
+  playerObject: {fileID: 0}
   cameraObject: {fileID: 1842510170}
   pauseSeconds: 0.2
   pauseSecondsBeforeMove: 0.1
@@ -2074,7 +2011,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a82c9ddb3b85f04fa010003dd91fecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerObject: {fileID: 226917638}
+  playerObject: {fileID: 0}
   cameraObject: {fileID: 1842510170}
   pauseSeconds: 0.2
   pauseSecondsBeforeMove: 0.1
@@ -8155,7 +8092,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a82c9ddb3b85f04fa010003dd91fecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerObject: {fileID: 226917638}
+  playerObject: {fileID: 0}
   cameraObject: {fileID: 1842510170}
   pauseSeconds: 0.2
   pauseSecondsBeforeMove: 0.1
@@ -8959,10 +8896,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a0551a66c605fd4fa2568efa1348eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 134360322}
+  target: {fileID: 0}
   offset: {x: 0, y: 0}
   smoothSpeed: 0.125
   lookAheadFactor: 0.5
+  shakeDuration: 0.5
+  shakeMagnitude: 0.5
 --- !u!114 &1842510175
 MonoBehaviour:
   m_ObjectHideFlags: 0

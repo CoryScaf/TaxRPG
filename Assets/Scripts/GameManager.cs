@@ -25,14 +25,14 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        LoadEncounterScene(); // Immediately start the encounter
+       // LoadEncounterScene(); // Immediately start the encounter
     }
 
     public void EndEncounter(bool victory)
     {
         if (victory)
         {
-            LoadMapScene();
+            //LoadMapScene();
         }
         else
         {
@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         else
         {
             // Show a scene where the life count slides down
-            ShowLifeLostScene();
+           // ShowLifeLostScene();
         }
     }
 
@@ -59,13 +59,13 @@ public class GameManager : MonoBehaviour
     {
         // Reset values for a new game
         lives = 4;
-        gold = 0;
+        //gold = 0;
         taxAmount = 100; 
         runsUntilTax = 4;
         runCount = 0;
 
         // Load main menu or game over scene
-        LoadMainMenu();
+        //LoadMainMenu();
     }
 
     public void CompleteRun()
@@ -73,14 +73,15 @@ public class GameManager : MonoBehaviour
         runCount++;
         if (runCount >= runsUntilTax)
         {
-            if (gold < taxAmount)
+            //replace 0 with gold
+            if (0 < taxAmount)
             {
                 LoseAllLives();
             }
             else
             {
                 // Pay the tax
-                gold -= taxAmount;
+              //  gold -= taxAmount;
 
                 // Increase tax and enemy difficulty for the next loop
                 IncreaseDifficulty();
@@ -91,7 +92,7 @@ public class GameManager : MonoBehaviour
         }
 
         // Load training screen after run is complete
-        LoadTrainingScreen();
+       // LoadTrainingScreen();
     }
 
     public void IncreaseDifficulty()
