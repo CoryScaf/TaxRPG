@@ -6,6 +6,7 @@ public class characterFallInVoid : MonoBehaviour
 {
     public GameObject playerObject;
     public GameObject cameraObject;
+    public int damage = 0;
     public float pauseSeconds = 0.2f;
     public float pauseSecondsBeforeMove = 0.1f;
     public bool returnToClosestHorizontal = true;
@@ -24,6 +25,7 @@ public class characterFallInVoid : MonoBehaviour
         yield return new WaitForSecondsRealtime(pauseSecondsBeforeMove);
 
         playerObject.transform.position = returnPos;
+        playerObject.GetComponent<PlayerStats>().TakeDamage(damage, new Vector2(0.0f, 0.0f));
             
         fade.fadeIn(1.0f / (pauseSeconds * 2));
         yield return new WaitForSecondsRealtime(pauseSeconds);
@@ -33,6 +35,7 @@ public class characterFallInVoid : MonoBehaviour
     }
     void OnTriggerStay2D(Collider2D col) {
         if(col.gameObject == playerObject && !realligning) {
+            if(col != playerObject.GetComponent<CircleCollider2D>()) return;
             // possibly remove health
             Bounds bnds = GetComponent<BoxCollider2D>().bounds;
             if(!bnds.Contains(col.bounds.center + (col.bounds.extents/2)) || !bnds.Contains(col.bounds.center - (col.bounds.extents/2))) return;

@@ -507,6 +507,16 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &330192865 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3641659314160704997, guid: 0960c4042668d8f4ca9e42836802a3b3, type: 3}
+  m_PrefabInstance: {fileID: 51545156}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &330192873 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5185974537215366808, guid: 0960c4042668d8f4ca9e42836802a3b3, type: 3}
+  m_PrefabInstance: {fileID: 51545156}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &389813459
 GameObject:
   m_ObjectHideFlags: 0
@@ -1658,7 +1668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a82c9ddb3b85f04fa010003dd91fecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerObject: {fileID: 0}
+  playerObject: {fileID: 330192865}
   cameraObject: {fileID: 1842510170}
   pauseSeconds: 0.2
   pauseSecondsBeforeMove: 0.1
@@ -2011,7 +2021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a82c9ddb3b85f04fa010003dd91fecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerObject: {fileID: 0}
+  playerObject: {fileID: 330192865}
   cameraObject: {fileID: 1842510170}
   pauseSeconds: 0.2
   pauseSecondsBeforeMove: 0.1
@@ -8092,7 +8102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a82c9ddb3b85f04fa010003dd91fecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerObject: {fileID: 0}
+  playerObject: {fileID: 330192865}
   cameraObject: {fileID: 1842510170}
   pauseSeconds: 0.2
   pauseSecondsBeforeMove: 0.1
@@ -8896,7 +8906,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a0551a66c605fd4fa2568efa1348eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 330192873}
   offset: {x: 0, y: 0}
   smoothSpeed: 0.125
   lookAheadFactor: 0.5
