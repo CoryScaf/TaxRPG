@@ -19,7 +19,7 @@ public class StatTrainer : MonoBehaviour
     {
         defaultColor = maxHealthStatText.color;
         playerStats = FindObjectOfType<PlayerStats>();
-        
+
         if (!playerStats)
         {
             Debug.LogError("PlayerStats not found in the scene!");

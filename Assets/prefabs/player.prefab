@@ -331,13 +331,19 @@ MonoBehaviour:
   attack: 10
   defense: 5
   moveSpeed: 5
+  tempAttack: 0
+  tempDefense: 0
+  tempMaxHealth: 0
+  tempCritChance: 0
+  tempRegenRate: 0
   critChance: 0.1
   critMultiplier: 2
   regenRate: 1
   gold: 0
-  invincibilityDuration: 0.4
+  invincibilityDuration: 1
   knockbackForce: 200
   healthBar: {fileID: 5868931610900996410}
+  goldText: {fileID: 8445260158448726396}
 --- !u!50 &6175109491762729552
 Rigidbody2D:
   serializedVersion: 4

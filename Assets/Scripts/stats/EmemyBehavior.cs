@@ -30,7 +30,6 @@ public class EnemyBehavior : MonoBehaviour
     public float knockbackDuration = 0.5f;
 
     // Private fields to handle knockback state
-    private bool isInKnockback = false;
     private Vector2 knockbackDirection;
     private EnemyStats enemyStats;
     private Rigidbody2D rb;

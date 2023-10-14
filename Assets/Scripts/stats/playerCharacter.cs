@@ -137,10 +137,6 @@ public class PlayerCharacter : MonoBehaviour
         return isInvincible;
     }
 
-    public void CollectGold(int amount)
-    {
-        // goldCount += amount;
-    }
 
     public void PayTax(int amount)
     {

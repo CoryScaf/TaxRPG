@@ -5,7 +5,13 @@ using UnityEngine.UI;
 using TMPro;
 public class PlayerStats : CharacterStats
 {
+    public int tempAttack;
+    public int tempDefense;
+    public int tempMaxHealth;
+    public int tempCritChance;
+    public int tempRegenRate;
     // New properties for critical hits and health regeneration
+
     public float critChance = 0.1f; // 10% chance by default
     public float critMultiplier = 2f; // Double damage on crits by default
     public int regenRate = 1; // Amount of health regenerated per second
@@ -19,7 +25,7 @@ public class PlayerStats : CharacterStats
     public Slider healthBar;
 
     private Rigidbody2D rb;
-    private PlayerCharacter playerCharacter; 
+    private PlayerCharacter playerCharacter;
     [Header("UI References")]
     public TextMeshProUGUI goldText; // Or use "public Text goldText;" if you're using Unity's default Text
 
@@ -42,7 +48,7 @@ public class PlayerStats : CharacterStats
     public void ApplyPermanentUpgrade()
     {
         int cost = 10;  // Example cost
-        if(gold >= cost)
+        if (gold >= cost)
         {
             // Upgrade logic, for example:
             attack += 1;
@@ -50,19 +56,22 @@ public class PlayerStats : CharacterStats
             UpdateGoldText();
         }
     }
-
-    // Method to apply temporary upgrades
-    public void ApplyTemporaryUpgrade()
+    public void RemoveTemporaryStats()
     {
-        int cost = 5;  // Example cost
-        if(gold >= cost)
-        {
-            // Upgrade logic, for example:
-            attack += 5;
-            gold -= cost;
-            UpdateGoldText();
-        }
+        attack -= tempAttack;
+        defense -= tempDefense;
+        maxHealth -= tempMaxHealth;
+        critChance -= tempCritChance;
+        regenRate -= tempRegenRate;
+
+        // Reset the temporary stats to 0 after removing them
+        tempAttack = 0;
+        tempDefense = 0;
+        tempMaxHealth = 0;
+        tempCritChance = 0;
+        tempRegenRate = 0;
     }
+
     protected override void Awake()
     {
         base.Awake();
@@ -97,7 +106,6 @@ public class PlayerStats : CharacterStats
             playerCharacter.BecomeInvincible(invincibilityDuration);
         }
     }
-
 
     // Overriding the TakeDamage method to incorporate critical hits
     public void Attack(CharacterStats target)
