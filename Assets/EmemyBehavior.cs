@@ -105,7 +105,6 @@ public class EnemyBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(other.name);
         if (other.CompareTag("CharacterWeapon"))
         {
             WeaponInfo weaponInfo = other.GetComponent<WeaponInfo>();

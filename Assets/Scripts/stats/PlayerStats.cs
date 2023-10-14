@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 public class PlayerStats : CharacterStats
 {
     // New properties for critical hits and health regeneration
     public float critChance = 0.1f; // 10% chance by default
     public float critMultiplier = 2f; // Double damage on crits by default
     public int regenRate = 1; // Amount of health regenerated per second
-
+    public int gold = 0;  // Your gold variable
     private float regenTimer = 0f; // A timer to track health regen intervals
 
     public float invincibilityDuration = 2f; // Duration of invincibility in seconds
@@ -20,7 +20,49 @@ public class PlayerStats : CharacterStats
 
     private Rigidbody2D rb;
     private PlayerCharacter playerCharacter; 
+    [Header("UI References")]
+    public TextMeshProUGUI goldText; // Or use "public Text goldText;" if you're using Unity's default Text
 
+    private void Start()
+    {
+        // Initialize the gold text UI
+        UpdateGoldText();
+    }
+
+    // Update the gold text UI
+    private void UpdateGoldText()
+    {
+        if (goldText != null)
+        {
+            goldText.text = "Gold: " + gold;
+        }
+    }
+
+    // Method to apply permanent upgrades
+    public void ApplyPermanentUpgrade()
+    {
+        int cost = 10;  // Example cost
+        if(gold >= cost)
+        {
+            // Upgrade logic, for example:
+            attack += 1;
+            gold -= cost;
+            UpdateGoldText();
+        }
+    }
+
+    // Method to apply temporary upgrades
+    public void ApplyTemporaryUpgrade()
+    {
+        int cost = 5;  // Example cost
+        if(gold >= cost)
+        {
+            // Upgrade logic, for example:
+            attack += 5;
+            gold -= cost;
+            UpdateGoldText();
+        }
+    }
     protected override void Awake()
     {
         base.Awake();
