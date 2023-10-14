@@ -90,4 +90,8 @@ public class CharacterMovement : MonoBehaviour
             shouldClampPosition = false;
         }
     }
+
+    public bool isCurrentlyRolling() {
+        return isRolling;
+    }
 }
