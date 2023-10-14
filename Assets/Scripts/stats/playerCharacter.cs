@@ -14,6 +14,10 @@ public class PlayerCharacter : MonoBehaviour
     public float knockbackDuration = 0.5f;  // Duration of the knockback effect
 
     private SpriteRenderer spriteRenderer;
+
+    public Sprite whiteSprite;  // The white version of the character sprite
+    public Sprite originalSprite;  // Reference to the original sprite
+
     private Color originalColor;
     void Start()
     {
@@ -34,7 +38,6 @@ public class PlayerCharacter : MonoBehaviour
             Debug.LogError("No SpriteRenderer found on PlayerCharacter or its children.");
             return;
         }
-        originalColor = spriteRenderer.color;
     }
 
     void Update()
@@ -112,25 +115,29 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
-    private IEnumerator InvincibilityCoroutine(float invincibilityDuration)
+private IEnumerator InvincibilityCoroutine(float invincibilityDuration)
+{
+    isInvincible = true;
+
+    float elapsed = 0f;
+    while (elapsed < invincibilityDuration)
     {
-        isInvincible = true;
+        spriteRenderer.sprite = whiteSprite;  // Change to the white version
+        yield return new WaitForSeconds(0.1f);  // Wait for 0.1 seconds
 
-        float elapsed = 0f;
-        while (elapsed < invincibilityDuration)
-        {
-            spriteRenderer.color = new Color(1f, 1f, 1f, 0f);  // Make sprite transparent
-            yield return new WaitForSeconds(0.1f);
+        spriteRenderer.sprite = originalSprite;  // Change back to the original sprite
+        yield return new WaitForSeconds(0.1f);  // Wait for 0.1 seconds
 
-            spriteRenderer.color = new Color(1f, 1f, 1f, 1f);  // Return sprite to original visibility
-            yield return new WaitForSeconds(0.1f);
-
-            elapsed += 0.2f;
-        }
-
-        spriteRenderer.color = originalColor;
-        isInvincible = false;
+        elapsed += 0.2f;  // 0.1s + 0.1s = 0.2s total for one blink cycle
     }
+
+    // Ensure the sprite is set back to the original at the end
+    spriteRenderer.sprite = originalSprite;
+
+    isInvincible = false;
+}
+
+
 
     public bool IsInvincible()
     {
