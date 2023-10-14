@@ -35,7 +35,7 @@ public class characterFallInVoid : MonoBehaviour
         if(col.gameObject == playerObject && !realligning) {
             // possibly remove health
             Bounds bnds = GetComponent<BoxCollider2D>().bounds;
-            if(!bnds.Contains(col.bounds.max) || !bnds.Contains(col.bounds.min)) return;
+            if(!bnds.Contains(col.bounds.center + (col.bounds.extents/2)) || !bnds.Contains(col.bounds.center - (col.bounds.extents/2))) return;
             if(playerObject.GetComponent<CharacterMovement>().isCurrentlyRolling()) return;
             Vector3 returnPos = playerObject.transform.position;
             if(returnToClosestHorizontal) {
