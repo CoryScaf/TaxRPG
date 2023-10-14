@@ -22,7 +22,7 @@ public class PlayerCharacter : MonoBehaviour
     void Start()
     {
         movementComponent = GetComponent<CharacterMovement>();
-
+        cameraController = FindObjectOfType<CameraController>();
         playerStats = GetComponent<PlayerStats>();
         if (playerStats == null)
         {
