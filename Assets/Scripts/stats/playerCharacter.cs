@@ -145,17 +145,7 @@ private IEnumerator InvincibilityCoroutine(float invincibilityDuration)
     }
 
 
-    public void PayTax(int amount)
-    {
-        // if (amount <= goldCount)
-        //  {
-        //   goldCount -= amount;
-        // }
-        // else
-        // {
-        // Not enough gold to pay tax logic
-        // }
-    }
+
 
 
 

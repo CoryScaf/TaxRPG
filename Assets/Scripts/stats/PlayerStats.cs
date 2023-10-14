@@ -105,6 +105,9 @@ public class PlayerStats : CharacterStats
         {
             playerCharacter.BecomeInvincible(invincibilityDuration);
         }
+        if(this.currentHealth <= 0){
+            GameManager.instance.EndEncounter(false);
+        }
     }
 
     // Overriding the TakeDamage method to incorporate critical hits
