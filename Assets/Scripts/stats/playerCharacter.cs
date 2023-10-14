@@ -42,6 +42,12 @@ public class PlayerCharacter : MonoBehaviour
 
     void Update()
     {
+        // Debugging: End the encounter when the E key is pressed
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            bool victory = true;  // Assuming victory for now; you can toggle this to false for debugging defeats
+            GameManager.instance.EndEncounter(victory);
+        }  
         if (isInKnockback == false)
         {
             Vector2 direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
@@ -59,6 +65,17 @@ public class PlayerCharacter : MonoBehaviour
 
         }
 
+    }
+    public void Heal(int amount)
+    {
+        if (playerStats)
+        {
+            playerStats.currentHealth += amount;
+            if (playerStats.currentHealth > playerStats.maxHealth)
+            {
+                playerStats.currentHealth = playerStats.maxHealth;
+            }
+        }
     }
     private void OnTriggerEnter2D(Collider2D other)
     {

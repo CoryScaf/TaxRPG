@@ -1,11 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
-using UnityEditor.UIElements;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-// based off https://github.com/ReCogMission/FirstTutorials/blob/master/CameraFade.cs
 public class CameraFade : MonoBehaviour
 {
     public AnimationCurve fadeCurve = new AnimationCurve(new Keyframe(0, 1),

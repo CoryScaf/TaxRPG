@@ -1,21 +1,26 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance; // Singleton pattern
+    public static GameManager instance;
+
     public int lives = 4;
-    public int taxAmount = 100; // This is just a starting value. Adjust as needed.
+    public int taxAmount = 100;
     public int runsUntilTax = 4;
     public int runCount = 0;
 
+    private bool isFirstStart = true;
+
     private void Awake()
     {
-        // Singleton pattern to ensure only one GameManager exists
+        // Singleton pattern to ensure only one instance exists.
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject); // Prevent destruction when changing scenes.
         }
         else
         {
@@ -23,16 +28,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        if (SceneManager.GetActiveScene().name == "startScene" && isFirstStart)
+        {
+            StartGame();
+        }
+    }
+
     public void StartGame()
     {
-       // LoadEncounterScene(); // Immediately start the encounter
+        isFirstStart = false; // set to false after the initial start
+        LoadEncounterScene();  // start in an encounter
     }
 
     public void EndEncounter(bool victory)
     {
         if (victory)
         {
-            //LoadMapScene();
+            LoadMapScene();
+            StartCoroutine(WaitAndNotifyNodeCompletion());
         }
         else
         {
@@ -40,32 +55,41 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void LoseLife()
+    private IEnumerator WaitAndNotifyNodeCompletion()
+    {
+        // Wait for the map scene to fully load and all objects to be initialized
+        yield return new WaitForSeconds(0.5f);  // You can adjust this time as necessary
+
+        MapManager mapManager = FindObjectOfType<MapManager>();
+        if (mapManager)
+        {
+            mapManager.NodeCompleted();
+        }
+        else
+        {
+            Debug.LogError("Failed to find MapManager instance after loading map scene.");
+        }
+    }
+
+    void LoseLife()
     {
         lives--;
         if (lives <= 0)
         {
-            // End game or show some "game over" scene
             GameOver();
         }
-        else
-        {
-            // Show a scene where the life count slides down
-           // ShowLifeLostScene();
-        }
+        // Else, consider implementing a visual representation of losing a life here.
     }
 
-    public void GameOver()
+    void GameOver()
     {
-        // Reset values for a new game
+        // Reset all values for a new game.
         lives = 4;
-        //gold = 0;
-        taxAmount = 100; 
+        taxAmount = 100;
         runsUntilTax = 4;
         runCount = 0;
 
-        // Load main menu or game over scene
-        //LoadMainMenu();
+        // TODO: Load main menu or game over scene.
     }
 
     public void CompleteRun()
@@ -73,39 +97,30 @@ public class GameManager : MonoBehaviour
         runCount++;
         if (runCount >= runsUntilTax)
         {
-            //replace 0 with gold
-            if (0 < taxAmount)
-            {
-                LoseAllLives();
-            }
-            else
-            {
-                // Pay the tax
-              //  gold -= taxAmount;
-
-                // Increase tax and enemy difficulty for the next loop
-                IncreaseDifficulty();
-
-                // Reset the run count
-                runCount = 0;
-            }
+            // TODO: Check if player has enough gold to pay tax.
         }
-
-        // Load training screen after run is complete
-       // LoadTrainingScreen();
     }
 
-    public void IncreaseDifficulty()
+    void IncreaseDifficulty()
     {
-        taxAmount += 50; // Increase tax by some amount
-        // Increase enemy stats here too
+        taxAmount += 50;
+        // TODO: Increase enemy stats.
     }
 
-    public void LoseAllLives()
+    void LoseAllLives()
     {
         lives = 0;
         GameOver();
     }
 
-    // Add methods to load different scenes like LoadEncounterScene(), LoadMapScene(), etc.
+    public void LoadEncounterScene()
+    {
+        SceneManager.LoadScene("CombatScene1");
+    }
+
+    public void LoadMapScene()
+    {
+        SceneManager.LoadScene("map");
+    }
+
 }
