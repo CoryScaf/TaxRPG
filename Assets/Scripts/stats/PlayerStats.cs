@@ -28,10 +28,9 @@ public class PlayerStats : CharacterStats
     private PlayerCharacter playerCharacter;
     [Header("UI References")]
     public TextMeshProUGUI goldText; // Or use "public Text goldText;" if you're using Unity's default Text
-    protected override void Awake()
+    protected override void Start()
     {
-        DontDestroyOnLoad(this.gameObject);
-        base.Awake();
+        base.Start();
 
         rb = GetComponent<Rigidbody2D>();
         playerCharacter = GetComponent<PlayerCharacter>();
@@ -43,10 +42,6 @@ public class PlayerStats : CharacterStats
 
         healthBar.maxValue = maxHealth;
         healthBar.value = currentHealth;
-    }
-
-    private void Start()
-    {
         // Initialize the gold text UI
         UpdateGoldText();
     }

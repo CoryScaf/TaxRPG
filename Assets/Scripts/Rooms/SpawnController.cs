@@ -44,6 +44,7 @@ public class SpawnController : MonoBehaviour
                 if(spawned != null) return;
             }
 
+            FindObjectOfType<GameManager>().EndEncounter(true);
             // Move back to map
         }
     }

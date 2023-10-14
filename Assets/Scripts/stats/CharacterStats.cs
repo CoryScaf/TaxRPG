@@ -9,7 +9,7 @@ public class CharacterStats : MonoBehaviour
     public int defense = 5;
     public float moveSpeed = 5f;
 
-    protected virtual void Awake()
+    protected virtual void Start()
     {
         currentHealth = maxHealth;
     }
