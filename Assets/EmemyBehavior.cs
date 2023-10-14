@@ -105,13 +105,14 @@ public class EnemyBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log(other.name);
         if (other.CompareTag("CharacterWeapon"))
         {
             WeaponInfo weaponInfo = other.GetComponent<WeaponInfo>();
             if (weaponInfo)
             {
                 Vector2 knockbackOrigin = playerTransform.position;
-
+   
                 // Use TakeDamage method in EnemyStats
                 enemyStats.TakeDamage(weaponInfo.damage);
 
