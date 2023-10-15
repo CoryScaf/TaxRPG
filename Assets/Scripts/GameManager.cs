@@ -44,8 +44,14 @@ public class GameManager : MonoBehaviour
 
     public void EndEncounter(bool victory)
     {
+        
         if (victory)
         {
+            // heal the player by their regen rate here
+            PlayerCharacter player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCharacter>();
+            player.Heal(player.playerStats.regenRate);
+            //update stat repository
+            this.GetComponent<PlayerStats>().CopyStats(player.playerStats);
             LoadMapScene();
             StartCoroutine(WaitAndNotifyNodeCompletion());
         }

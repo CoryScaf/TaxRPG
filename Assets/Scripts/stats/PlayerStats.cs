@@ -10,13 +10,13 @@ public class PlayerStats : CharacterStats
     public int tempMaxHealth;
     public int tempCritChance;
     public int tempRegenRate;
+    
     // New properties for critical hits and health regeneration
 
     public float critChance = 0.1f; // 10% chance by default
     public float critMultiplier = 2f; // Double damage on crits by default
     public int regenRate = 1; // Amount of health regenerated per second
     public int gold = 0;  // Your gold variable
-    private float regenTimer = 0f; // A timer to track health regen intervals
 
     public float invincibilityDuration = 2f; // Duration of invincibility in seconds
     public float knockbackForce = 5f; // Force of the knockback
@@ -34,6 +34,11 @@ public class PlayerStats : CharacterStats
 
         rb = GetComponent<Rigidbody2D>();
         playerCharacter = GetComponent<PlayerCharacter>();
+        
+        if(this.tag == "Player"){
+            PlayerStats statCopy = FindObjectOfType<GameManager>().GetComponent<PlayerStats>();
+            this.CopyStats(statCopy);
+        }
         if (healthBar == null)
         {
             Debug.LogError("HealthBar Slider is not set on " + gameObject.name);
@@ -45,7 +50,23 @@ public class PlayerStats : CharacterStats
         // Initialize the gold text UI
         UpdateGoldText();
     }
+    public void CopyStats(PlayerStats sourceStats)
+    {
+        if (sourceStats == null)
+        {
+            Debug.LogError("Provided source PlayerStats is null!");
+            return;
+        }
 
+        this.maxHealth = sourceStats.maxHealth;
+        this.currentHealth = sourceStats.currentHealth;
+        this.attack = sourceStats.attack;
+        this.defense = sourceStats.defense;
+        this.critChance = sourceStats.critChance;
+        this.regenRate = sourceStats.regenRate;
+        this.gold = sourceStats.gold;
+        // ... (repeat for any other stats)
+    }
     // Update the gold text UI
     private void UpdateGoldText()
     {
