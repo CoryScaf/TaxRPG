@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
 public class EnemyStats : CharacterStats
@@ -54,7 +55,12 @@ public class EnemyStats : CharacterStats
 
         if (this.currentHealth <= 0)
         {
-            Destroy(gameObject);
+            if( SceneManager.GetActiveScene().name.Equals("BossScene")){
+                FindObjectOfType<GameManager>().EndEncounter(true);
+            }else{
+                Destroy(gameObject);
+            }
+            
         }
     }
 
