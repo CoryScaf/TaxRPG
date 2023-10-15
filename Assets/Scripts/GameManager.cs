@@ -39,16 +39,16 @@ public class GameManager : MonoBehaviour
     }
     public void StartGame()
     {
-        isFirstStart = false; // set to false after the initial start
+        
         LoadEncounterScene();  // start in an encounter
     }
 
     public void EndEncounter(bool victory)
     {
-
+       
         if (victory)
         {
-            
+             isFirstStart = false; // set to false after the initial start
             // heal the player by their regen rate here
             PlayerCharacter player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCharacter>();
             player.Heal(player.playerStats.regenRate);
@@ -166,8 +166,10 @@ public class GameManager : MonoBehaviour
         PlayerCharacter player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCharacter>();
         //update stat repository
         this.GetComponent<PlayerStats>().CopyStats(player.playerStats);
+        if(isFirstStart == false){
+            FindObjectOfType<MapManager>().currentID = "1";
+        }
         
-        FindObjectOfType<MapManager>().currentID = "1";
         LoadEncounterScene();  // start in an encounter
     }
 
