@@ -14,7 +14,8 @@ public class PlayerStats : CharacterStats
     // New properties for critical hits and health regeneration
 
     public float critChance = 0.1f; // 10% chance by default
-    public float critMultiplier = 2f; // Double damage on crits by default
+    public float critMultiplier = 1.5f; // Double damage on crits by default
+    private float baseCritMultiplier = 1.5f;
     public int regenRate = 1; // Amount of health regenerated per second
     public int gold = 0;  // Your gold variable
     // private float regenTimer = 0f; // A timer to track health regen intervals
@@ -92,7 +93,7 @@ public class PlayerStats : CharacterStats
         if (scalar <= 0){
             scalar = 0;
         }
-        critMultiplier = 2 +scalar;
+        critMultiplier = baseCritMultiplier +scalar;
     }
     public void RemoveTemporaryStats()
     {

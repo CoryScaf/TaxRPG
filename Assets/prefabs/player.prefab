@@ -331,7 +331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  attack: 10
+  attack: 20
   defense: 5
   moveSpeed: 5
   tempAttack: 0
@@ -340,7 +340,7 @@ MonoBehaviour:
   tempCritChance: 0
   tempRegenRate: 0
   critChance: 0.1
-  critMultiplier: 2
+  critMultiplier: 1.5
   regenRate: 1
   gold: 0
   invincibilityDuration: 1
