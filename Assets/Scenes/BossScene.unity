@@ -737,6 +737,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5172288724835407825, guid: 82582fcbe378ac140942640b5f2e905d, type: 3}
+      propertyPath: followRange
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5172288724835407825, guid: 82582fcbe378ac140942640b5f2e905d, type: 3}
+      propertyPath: cooldownTime
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5172288724835407825, guid: 82582fcbe378ac140942640b5f2e905d, type: 3}
+      propertyPath: fastAttackPrefab
+      value: 
+      objectReference: {fileID: 4714111662263775318, guid: 1d4208476cb55ae429b0777d447866c3, type: 3}
+    - target: {fileID: 5172288724835407825, guid: 82582fcbe378ac140942640b5f2e905d, type: 3}
+      propertyPath: circleAttackPrefab
+      value: 
+      objectReference: {fileID: 1250613880579468044, guid: 41b865c578ed31146bef7dca4f6e298b, type: 3}
+    - target: {fileID: 5172288724835407825, guid: 82582fcbe378ac140942640b5f2e905d, type: 3}
+      propertyPath: followAttackPrefab
+      value: 
+      objectReference: {fileID: 4620816963781191496, guid: 169d2eacd1729a44b99d13ed04efd803, type: 3}
     - target: {fileID: 7356466266030276874, guid: 82582fcbe378ac140942640b5f2e905d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.04

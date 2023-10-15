@@ -22,6 +22,14 @@ public class BossBehavior : MonoBehaviour
     public float chargeTime = 2f;
     public float cooldownTime = 2f;
     public float invincibilityDur = 0.2f;
+    public float rageLevel1Percent = 0.75f;
+    public float rageLevel2Percent = 0.50f;
+    public float rageLevel3Percent = 0.25f;
+    public float rageLevelCooldownMultiplier = 0.8f;
+    public int rageLevel = 0;
+    public GameObject circleAttackPrefab;
+    public GameObject followAttackPrefab;
+    public GameObject fastAttackPrefab;
 
     public Sprite whiteSprite;
     public Sprite originalSprite;
@@ -61,7 +69,7 @@ public class BossBehavior : MonoBehaviour
                 break;
 
             case State.Following:
-                if (distanceToPlayer <= attackRange && Time.time - lastAttackTime >= cooldownTime)
+                if (distanceToPlayer <= attackRange && Time.time - lastAttackTime >= (cooldownTime * Mathf.Pow(rageLevelCooldownMultiplier,rageLevel)))
                 {
                     StartCoroutine(StartCharging());
                 }
@@ -82,15 +90,51 @@ public class BossBehavior : MonoBehaviour
         currentState = State.Attacking;
         lastAttackTime = Time.time;
 
-        float blinkDuration = 1f;
         float blinkInterval = 0.1f;
         float elapsedTime = 0f;
+        int range = rageLevel+2;
+        if(range > 4) range = 4;
 
-        while (elapsedTime < blinkDuration)
-        {
-            spriteRenderer.color = (spriteRenderer.color == Color.red) ? Color.white : Color.red;
-            elapsedTime += blinkInterval;
-            yield return new WaitForSeconds(blinkInterval);
+        int attack = Random.Range(1,range);
+        if(attack == 1) {
+            List<GameObject> attacks = new List<GameObject>(10);
+            for(int i = 0; i < 10; ++i) {
+                spriteRenderer.color = (spriteRenderer.color == Color.red) ? Color.white : Color.red;
+                elapsedTime += blinkInterval;
+                Vector3 dir = Quaternion.AngleAxis(36*i, Vector3.forward) * new Vector3(1f, 0f, 0f);
+                GameObject shot = Instantiate(circleAttackPrefab, transform.position + dir, Quaternion.identity);
+                shot.GetComponent<BossBlackShot>().SetDirection(dir, 36*i-90);
+                attacks.Add(shot);
+
+                yield return new WaitForSeconds(blinkInterval);
+            }
+            for(int i = 0; i < 10; ++i) {
+                attacks[i].GetComponent<BossBlackShot>().Shoot();
+            }
+        }
+        else if(attack == 2) {
+            Vector3 spawnPos = playerTransform.position - transform.position;
+            GameObject shot = Instantiate(followAttackPrefab, spawnPos.normalized + transform.position, Quaternion.identity); 
+            shot.GetComponent<BossGreenShot>().SetTarget(playerTransform);
+            for(int i = 0; i < 10; ++i) {
+                spriteRenderer.color = (spriteRenderer.color == Color.red) ? Color.white : Color.red;
+                elapsedTime += blinkInterval;
+
+                yield return new WaitForSeconds(blinkInterval);
+            }
+            shot.GetComponent<BossGreenShot>().Shoot();
+        }
+        else if(attack == 3) {
+            Vector3 spawnPos = playerTransform.position - transform.position;
+            GameObject shot = Instantiate(fastAttackPrefab, spawnPos.normalized + transform.position, Quaternion.identity); 
+            shot.GetComponent<BossRedShot>().SetTarget(playerTransform, transform);
+            for(int i = 0; i < 10; ++i) {
+                spriteRenderer.color = (spriteRenderer.color == Color.red) ? Color.white : Color.red;
+                elapsedTime += blinkInterval;
+
+                yield return new WaitForSeconds(blinkInterval);
+            }
+            shot.GetComponent<BossRedShot>().Shoot();
         }
 
         spriteRenderer.color = Color.white;
@@ -124,6 +168,16 @@ public class BossBehavior : MonoBehaviour
                 knockbackDirection = (transform.position - (Vector3)knockbackOrigin).normalized;
                 StartCoroutine(StartKnockback(knockbackDirection, knockbackForce, knockbackDuration));
                 StartCoroutine(InvincibilityCoroutine(invincibilityDur));
+                float percentHealth = enemyStats.currentHealth / (float)enemyStats.maxHealth;
+                if(percentHealth < rageLevel3Percent) {
+                    rageLevel = 3;
+                }
+                else if(percentHealth < rageLevel2Percent) {
+                    rageLevel = 2;
+                }
+                else if(percentHealth < rageLevel1Percent) {
+                    rageLevel = 1;
+                }
             }
             else
             {

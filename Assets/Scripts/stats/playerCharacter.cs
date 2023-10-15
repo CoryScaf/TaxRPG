@@ -97,10 +97,11 @@ public class PlayerCharacter : MonoBehaviour
             Vector2 knockbackDirection = (transform.position - other.transform.position).normalized;
             // Handle player taking damage, knockback, etc. here
 
-            playerStats.TakeDamage(damage, knockbackDirection);
             //shake camera
             if(!isInvincible)
                 cameraController.TriggerShake();
+
+            playerStats.TakeDamage(damage, knockbackDirection);
             // Start the knockback effect
             StartKnockbackEffect();
         }
