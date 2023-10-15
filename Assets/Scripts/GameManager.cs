@@ -8,8 +8,7 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public GameObject BossPrefab;
-    public GameObject zombiePrefab;
+    public GameObject playerPrefab;
     public int lives = 4;
     public int taxAmount = 100;
     public int runsUntilTax = 4;
@@ -82,19 +81,50 @@ public class GameManager : MonoBehaviour
 
     void LoseLife()
     {
+        ResetStats();
         lives--;
         if (lives <= 0)
         {
-            GameOver();
+            SceneManager.LoadScene("GameOver");
         }
-        // Else, consider implementing a visual representation of losing a life here.
+        SceneManager.LoadScene("lifeLost");
     }
+    public void ResetStats()
+    {
+        // Get the PlayerStats component from the prefab
+        PlayerStats prefabStats = playerPrefab.GetComponent<PlayerStats>();
 
+        if (!prefabStats)
+        {
+            Debug.LogError("No PlayerStats component found on the Player prefab!");
+            return;
+        }
+
+        // Find the player instance in the scene and get its PlayerStats component
+        PlayerCharacter playerInstance = FindObjectOfType<PlayerCharacter>();
+        if (!playerInstance)
+        {
+            Debug.LogError("No Player instance found in the scene!");
+            return;
+        }
+        PlayerStats instanceStats = playerInstance.GetComponent<PlayerStats>();
+
+        // Copy stats from prefab to the instance
+        instanceStats.CopyStats(prefabStats);
+        this.GetComponent<PlayerStats>().CopyStats(prefabStats);
+
+        //heal players
+        instanceStats.currentHealth = instanceStats.maxHealth;
+        this.GetComponent<PlayerStats>().currentHealth = this.GetComponent<PlayerStats>().maxHealth;
+    }
     void GameOver()
     {
         // Reset all values for a new game.
-        //Application.LoadLevel();
+        runCount = 1;
 
+        //needs to reset player stats
+
+        LoadEncounterScene();  // start in an encounter
         // TODO: Load main menu or game over scene.
     }
     public void StartRun(){

@@ -331,7 +331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  attack: 100
+  attack: 10
   defense: 5
   moveSpeed: 5
   tempAttack: 0

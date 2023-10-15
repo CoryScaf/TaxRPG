@@ -26,6 +26,7 @@ public class StatTrainer : MonoBehaviour
         {
             Debug.LogError("PlayerStats not found in the scene!");
         }
+
         //update tax and runs left text
         GameManager gameManager = FindObjectOfType<GameManager>();
 

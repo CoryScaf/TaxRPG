@@ -46,10 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf205f6337d72fb4d933809427f0e6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  taxesOwed: {fileID: 101547032279172664, guid: 6315edcca6a6b7a40ae8074480435520, type: 3}
-  runsLeft: {fileID: 5049378027584945962, guid: bf94228cac57c6c449ce23169937c4a2, type: 3}
-  BossPrefab: {fileID: 8195106502847347244, guid: 82582fcbe378ac140942640b5f2e905d, type: 3}
-  zombiePrefab: {fileID: 2071077558995289453, guid: c4153e11f10a4514995ad5e960842161, type: 3}
+  playerPrefab: {fileID: 3641659314160704997, guid: 0960c4042668d8f4ca9e42836802a3b3, type: 3}
   lives: 4
   taxAmount: 100
   runsUntilTax: 4
