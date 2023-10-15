@@ -17,6 +17,7 @@ public class PlayerStats : CharacterStats
     public float critMultiplier = 2f; // Double damage on crits by default
     public int regenRate = 1; // Amount of health regenerated per second
     public int gold = 0;  // Your gold variable
+    // private float regenTimer = 0f; // A timer to track health regen intervals
 
     public float invincibilityDuration = 2f; // Duration of invincibility in seconds
     public float knockbackForce = 5f; // Force of the knockback

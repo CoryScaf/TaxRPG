@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBehavior : MonoBehaviour
+public class BossBehavior : MonoBehaviour
 {
     private enum State
     {
         Idle,
         Following,
-        Charging,
+        Attacking
     }
 
     private Transform playerTransform;
@@ -17,8 +17,8 @@ public class EnemyBehavior : MonoBehaviour
     public float attackRange = 3f;
     public float followRange = 6f;
     public float detectionRange = 10f;
-
-    public float chargeSpeed = 5f;
+    public float idleRange = 6f;
+    public float retreatMultiplier = 2.0f;
     public float chargeTime = 2f;
     public float cooldownTime = 2f;
     public float invincibilityDur = 0.2f;
@@ -68,19 +68,18 @@ public class EnemyBehavior : MonoBehaviour
                 else if (distanceToPlayer <= followRange)
                 {
                     Vector2 moveDirection = (playerTransform.position - transform.position).normalized;
-                    transform.position += (Vector3)moveDirection * Time.deltaTime; // Assume enemy has a defined move speed
+                    if(distanceToPlayer <= idleRange) moveDirection *= -retreatMultiplier;
+                    transform.position += (Vector3)moveDirection * enemyStats.moveSpeed * Time.deltaTime; // Assume enemy has a defined move speed
                 }
                 break;
-
-            case State.Charging:
-                // Charging behavior is handled in the StartCharging coroutine.
+            case State.Attacking:
                 break;
         }
     }
 
     private System.Collections.IEnumerator StartCharging()
     {
-        currentState = State.Charging;
+        currentState = State.Attacking;
         lastAttackTime = Time.time;
 
         float blinkDuration = 1f;
@@ -99,11 +98,9 @@ public class EnemyBehavior : MonoBehaviour
         chargeDirection = (playerTransform.position - transform.position).normalized;
         float startTime = Time.time;
 
-        while (Time.time - startTime < chargeTime)
-        {
-            transform.position += (Vector3)chargeDirection * chargeSpeed * Time.deltaTime;
-            yield return null;
-        }
+        //while (Time.time - startTime < chargeTime)
+        //{
+        //}
 
         currentState = State.Following;
     }
@@ -119,9 +116,8 @@ public class EnemyBehavior : MonoBehaviour
                 Vector2 knockbackOrigin = playerTransform.position;
                 GetComponent<AudioSource>().Play();
    
-                PlayerStats playerStats = FindObjectOfType<PlayerStats>();
                 // Use TakeDamage method in EnemyStats
-                enemyStats.TakeDamage(weaponInfo.damage,playerStats.critChance);
+                enemyStats.TakeDamage(weaponInfo.damage);
 
                 // Knockback logic can still be handled here
                 knockbackDirection = (transform.position - (Vector3)knockbackOrigin).normalized;
