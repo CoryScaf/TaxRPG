@@ -428,10 +428,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 76551808396903221, guid: 5f3fdb369f6b6ba49b8e158fa9f318f7, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
     - target: {fileID: 2042676763860884189, guid: 5f3fdb369f6b6ba49b8e158fa9f318f7, type: 3}
       propertyPath: m_Name
       value: GameManager

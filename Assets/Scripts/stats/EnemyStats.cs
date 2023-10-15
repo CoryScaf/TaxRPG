@@ -20,6 +20,17 @@ public class EnemyStats : CharacterStats
             Debug.LogError("No Canvas child found on the GameObject!");
         }
     }
+    protected override void Start()
+    {
+
+        if(GameManager.instance != null) // Make sure GameManager exists
+        {
+            int runs = GameManager.instance.runCount ; // Subtract 1 as you mentioned
+            float scalar = GameManager.instance.difficultyScaler;
+            scaleStats(runs, scalar);
+        }
+        currentHealth = maxHealth;
+    }
 
     public void TakeDamage(int damage, float critChance)
     {
@@ -83,6 +94,14 @@ public class EnemyStats : CharacterStats
         }
 
         Destroy(tmpText.gameObject);
+    }
+    public void scaleStats(int runs, float scalar)
+    {
+        int delta = (int)Mathf.Pow(runs,scalar);
+        this.maxHealth += delta;
+        this.attack += delta;
+        this.defense +=  delta;
+        // ... (repeat for any other stats)
     }
 
 }

@@ -6,6 +6,8 @@ public class StatTrainer : MonoBehaviour
     public TextMeshProUGUI maxHealthStatText, attackStatText, defenseStatText, critChanceStatText, regenRateStatText;
     public TextMeshProUGUI maxHealthCostText, attackCostText, defenseCostText, critChanceCostText, regenRateCostText;
     public TextMeshProUGUI playerStatsText;
+    public TextMeshProUGUI taxesOwed;
+    public TextMeshProUGUI runsLeft;
     public int maxHealthUpgradeCost = 5;
     public int attackUpgradeCost = 2;
     public int defenseUpgradeCost = 2;
@@ -25,9 +27,18 @@ public class StatTrainer : MonoBehaviour
             Debug.LogError("PlayerStats not found in the scene!");
         }
 
+        //update tax and runs left text
+        GameManager gameManager = FindObjectOfType<GameManager>();
+
+        taxesOwed.text = $"{gameManager.runsUntilTax - gameManager.runCount}";
+        runsLeft.text= $"{gameManager.taxAmount}";
+
         UpdateStatDisplay();
         UpdateCostDisplay();
         DisplayCurrentPlayerStats();
+    }
+    public void StartRun(){
+        FindObjectOfType<GameManager>().StartRun();    
     }
     private void DisplayCurrentPlayerStats()
     {

@@ -2,16 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
+
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-
+    public GameObject playerPrefab;
     public int lives = 4;
     public int taxAmount = 100;
     public int runsUntilTax = 4;
-    public int runCount = 0;
-
+    public int runCount = 1;
+    public float difficultyScaler = 1.1f;
     private bool isFirstStart = true;
 
     private void Awake()
@@ -44,9 +46,10 @@ public class GameManager : MonoBehaviour
 
     public void EndEncounter(bool victory)
     {
-        
+
         if (victory)
         {
+            ResetTemporaryStats();
             // heal the player by their regen rate here
             PlayerCharacter player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCharacter>();
             player.Heal(player.playerStats.regenRate);
@@ -79,32 +82,103 @@ public class GameManager : MonoBehaviour
 
     void LoseLife()
     {
+        ResetStats();
         lives--;
         if (lives <= 0)
         {
-            GameOver();
+            SceneManager.LoadScene("GameOver");
         }
-        // Else, consider implementing a visual representation of losing a life here.
+        SceneManager.LoadScene("lifeLost");
+    }
+    public void ResetStats()
+    {
+        // Get the PlayerStats component from the prefab
+        PlayerStats prefabStats = playerPrefab.GetComponent<PlayerStats>();
+
+        if (!prefabStats)
+        {
+            Debug.LogError("No PlayerStats component found on the Player prefab!");
+            return;
+        }
+
+        // Find the player instance in the scene and get its PlayerStats component
+        PlayerCharacter playerInstance = FindObjectOfType<PlayerCharacter>();
+        if (!playerInstance)
+        {
+            Debug.LogError("No Player instance found in the scene!");
+            return;
+        }
+        PlayerStats instanceStats = playerInstance.GetComponent<PlayerStats>();
+
+        // Copy stats from prefab to the instance
+        instanceStats.CopyStats(prefabStats);
+        this.GetComponent<PlayerStats>().CopyStats(prefabStats);
+
+        //heal players
+        instanceStats.currentHealth = instanceStats.maxHealth;
+        this.GetComponent<PlayerStats>().currentHealth = this.GetComponent<PlayerStats>().maxHealth;
+    }
+    public void ResetTemporaryStats()
+    {
+        // Find the player instance in the scene and get its PlayerStats component
+        PlayerCharacter playerInstance = FindObjectOfType<PlayerCharacter>();
+        if (!playerInstance)
+        {
+            Debug.LogError("No Player instance found in the scene!");
+            return;
+        }
+        PlayerStats instanceStats = playerInstance.GetComponent<PlayerStats>();
+
+        // Reset the temporary stats of the instance
+        instanceStats.RemoveTemporaryStats();
+
+        // Reset the temporary stats of the GameManager's PlayerStats component
+        this.GetComponent<PlayerStats>().RemoveTemporaryStats();
+
+        // Heal the player instance in the scene
+        instanceStats.currentHealth = instanceStats.maxHealth;
+
+        // Heal the GameManager's PlayerStats component (assuming it's meant to represent player stats)
+        this.GetComponent<PlayerStats>().currentHealth = this.GetComponent<PlayerStats>().maxHealth;
     }
 
     void GameOver()
     {
         // Reset all values for a new game.
-        lives = 4;
-        taxAmount = 100;
-        runsUntilTax = 4;
-        runCount = 0;
+        runCount = 1;
 
+        //needs to reset player stats
+
+        LoadEncounterScene();  // start in an encounter
         // TODO: Load main menu or game over scene.
+    }
+    public void StartRun()
+    {
+        FindObjectOfType<MapManager>().currentID = "1";
+        LoadEncounterScene();  // start in an encounter
     }
 
     public void CompleteRun()
     {
         runCount++;
-        if (runCount >= runsUntilTax)
-        {
-            // TODO: Check if player has enough gold to pay tax.
-        }
+
+        PlayerStats playerStats = FindObjectOfType<PlayerStats>();
+        //check if it's time to tax by run count, if they cant pay they lose 
+        // if(runCount == runsUntilTax){
+        //     
+        //     if(playerStats.gold >= taxAmount){
+        //         playerStats.gold -= taxAmount;
+        //     }else{
+        //         //game over scene into game over
+        //         //LoadSceneGameOver();
+        //         GameOver();
+        //     }
+        // }
+
+        SceneManager.LoadScene("training");
+        //heal player till full
+        playerStats.currentHealth = playerStats.maxHealth;
+
     }
 
     void IncreaseDifficulty()
