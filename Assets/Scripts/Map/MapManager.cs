@@ -68,6 +68,10 @@ public class MapManager : MonoBehaviour
 
     public void NodeCompleted()
     {
+        if(currentID.Equals("6")){
+            Debug.Log("completed run");
+            GameManager.instance.CompleteRun();
+        }
         // Lock the current node and unlock its children.
         MapNode currentNode = FindNodeByID(currentID);
         if (currentNode != null)

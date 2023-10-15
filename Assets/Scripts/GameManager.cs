@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
+
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-
+    public GameObject BossPrefab;
+    public GameObject zombiePrefab;
     public int lives = 4;
     public int taxAmount = 100;
     public int runsUntilTax = 4;
-    public int runCount = 0;
-
+    public int runCount = 1;
+    public float difficultyScaler = 1.1f;
     private bool isFirstStart = true;
 
     private void Awake()
@@ -90,21 +93,36 @@ public class GameManager : MonoBehaviour
     void GameOver()
     {
         // Reset all values for a new game.
-        lives = 4;
-        taxAmount = 100;
-        runsUntilTax = 4;
-        runCount = 0;
+        //Application.LoadLevel();
 
         // TODO: Load main menu or game over scene.
+    }
+    public void StartRun(){
+        FindObjectOfType<MapManager>().currentID = "1";
+        LoadEncounterScene();  // start in an encounter
     }
 
     public void CompleteRun()
     {
         runCount++;
-        if (runCount >= runsUntilTax)
-        {
-            // TODO: Check if player has enough gold to pay tax.
-        }
+
+            PlayerStats playerStats = FindObjectOfType<PlayerStats>();
+            //check if it's time to tax by run count, if they cant pay they lose 
+            // if(runCount == runsUntilTax){
+            //     
+            //     if(playerStats.gold >= taxAmount){
+            //         playerStats.gold -= taxAmount;
+            //     }else{
+            //         //game over scene into game over
+            //         //LoadSceneGameOver();
+            //         GameOver();
+            //     }
+            // }
+            
+            SceneManager.LoadScene("training");
+            //heal player till full
+            playerStats.currentHealth = playerStats.maxHealth;
+ 
     }
 
     void IncreaseDifficulty()
