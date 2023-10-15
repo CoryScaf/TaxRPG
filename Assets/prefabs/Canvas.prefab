@@ -310,6 +310,10 @@ PrefabInstance:
       value: shop panel
       objectReference: {fileID: 0}
     - target: {fileID: 8543301779054858301, guid: d77e52ba181218c429f61269609526f8, type: 3}
+      propertyPath: lives
+      value: 
+      objectReference: {fileID: 6079389888088383860}
+    - target: {fileID: 8543301779054858301, guid: d77e52ba181218c429f61269609526f8, type: 3}
       propertyPath: runsLeft
       value: 
       objectReference: {fileID: 5620962898404058545}
@@ -325,6 +329,17 @@ PrefabInstance:
 --- !u!114 &5620962898404058545 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7565739910381615617, guid: d77e52ba181218c429f61269609526f8, type: 3}
+  m_PrefabInstance: {fileID: 2810039066744889264}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6079389888088383860 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8259908756038532804, guid: d77e52ba181218c429f61269609526f8, type: 3}
   m_PrefabInstance: {fileID: 2810039066744889264}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

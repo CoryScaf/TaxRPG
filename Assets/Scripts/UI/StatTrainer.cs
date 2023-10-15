@@ -8,6 +8,7 @@ public class StatTrainer : MonoBehaviour
     public TextMeshProUGUI playerStatsText;
     public TextMeshProUGUI taxesOwed;
     public TextMeshProUGUI runsLeft;
+    public TextMeshProUGUI lives;
     public int maxHealthUpgradeCost = 5;
     public int attackUpgradeCost = 2;
     public int defenseUpgradeCost = 2;
@@ -47,6 +48,7 @@ public class StatTrainer : MonoBehaviour
 
         taxesOwed.text = $"{gameManager.runsUntilTax - gameManager.runCount}";
         runsLeft.text = $"{gameManager.taxAmount}";
+        lives.text = $"{gameManager.lives}";
 
         UpdateStatDisplay();
         UpdateCostDisplay();
