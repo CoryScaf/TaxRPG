@@ -22,6 +22,9 @@ public class EnemyBehavior : MonoBehaviour
     public float chargeTime = 2f;
     public float cooldownTime = 2f;
 
+    public Sprite whiteSprite;
+    public Sprite originalSprite;
+
     private State currentState = State.Idle;
     private Vector2 chargeDirection;
     private float lastAttackTime = -Mathf.Infinity;
@@ -33,6 +36,8 @@ public class EnemyBehavior : MonoBehaviour
     private Vector2 knockbackDirection;
     private EnemyStats enemyStats;
     private Rigidbody2D rb;
+    private bool isInvincible;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -104,12 +109,14 @@ public class EnemyBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if(isInvincible) return;
         if (other.CompareTag("CharacterWeapon"))
         {
             WeaponInfo weaponInfo = other.GetComponent<WeaponInfo>();
             if (weaponInfo)
             {
                 Vector2 knockbackOrigin = playerTransform.position;
+                GetComponent<AudioSource>().Play();
    
                 // Use TakeDamage method in EnemyStats
                 enemyStats.TakeDamage(weaponInfo.damage);
@@ -117,13 +124,35 @@ public class EnemyBehavior : MonoBehaviour
                 // Knockback logic can still be handled here
                 knockbackDirection = (transform.position - (Vector3)knockbackOrigin).normalized;
                 StartCoroutine(StartKnockback(knockbackDirection, knockbackForce, knockbackDuration));
-
+                StartCoroutine(InvincibilityCoroutine(0.2f));
             }
             else
             {
                 Debug.LogError("No WeaponInfo found on the weapon.");
             }
         }
+    }
+
+    private IEnumerator InvincibilityCoroutine(float invincibilityDuration)
+    {
+        isInvincible = true;
+
+        float elapsed = 0f;
+        while (elapsed < invincibilityDuration)
+        {
+            spriteRenderer.sprite = whiteSprite;  // Change to the white version
+            yield return new WaitForSeconds(0.1f);  // Wait for 0.1 seconds
+
+            spriteRenderer.sprite = originalSprite;  // Change back to the original sprite
+            yield return new WaitForSeconds(0.1f);  // Wait for 0.1 seconds
+
+            elapsed += 0.2f;  // 0.1s + 0.1s = 0.2s total for one blink cycle
+        }
+
+        // Ensure the sprite is set back to the original at the end
+        spriteRenderer.sprite = originalSprite;
+
+        isInvincible = false;
     }
     private IEnumerator StartKnockback(Vector2 direction, float force, float duration)
     {

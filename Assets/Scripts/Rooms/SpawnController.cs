@@ -28,7 +28,7 @@ public class SpawnController : MonoBehaviour
                 if(spawned != null) return;
                 else spawnedEnemies.Remove(spawned);
             }
-
+            GetComponent<AudioSource>().Play();
             for(int i = 0; i < spawnLocations.Count; ++i) {
                 float chance = Random.Range(1, 100) / 100.0f;
                 bool shouldSpawn = chance < (spawnChance + chanceIncreasePerWave*curWave);

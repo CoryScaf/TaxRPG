@@ -99,7 +99,8 @@ public class PlayerCharacter : MonoBehaviour
 
             playerStats.TakeDamage(damage, knockbackDirection);
             //shake camera
-            cameraController.TriggerShake();
+            if(!isInvincible)
+                cameraController.TriggerShake();
             // Start the knockback effect
             StartKnockbackEffect();
         }
