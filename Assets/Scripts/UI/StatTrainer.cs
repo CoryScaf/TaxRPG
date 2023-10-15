@@ -5,7 +5,7 @@ public class StatTrainer : MonoBehaviour
 {
     public TextMeshProUGUI maxHealthStatText, attackStatText, defenseStatText, critChanceStatText, regenRateStatText;
     public TextMeshProUGUI maxHealthCostText, attackCostText, defenseCostText, critChanceCostText, regenRateCostText;
-
+    public TextMeshProUGUI playerStatsText;
     public int maxHealthUpgradeCost = 5;
     public int attackUpgradeCost = 2;
     public int defenseUpgradeCost = 2;
@@ -27,7 +27,13 @@ public class StatTrainer : MonoBehaviour
 
         UpdateStatDisplay();
         UpdateCostDisplay();
+        DisplayCurrentPlayerStats();
     }
+    private void DisplayCurrentPlayerStats()
+    {
+        playerStatsText.text = $"HLT: {playerStats.maxHealth} ATK: {playerStats.attack} DEF: {playerStats.defense} CRT: {playerStats.critChance} REG: {playerStats.regenRate}";
+    }
+
 
     public void UpdateStatDisplay()
     {
@@ -115,6 +121,7 @@ public class StatTrainer : MonoBehaviour
             DeductGold(maxHealthUpgradeCost);
             UpdateStatDisplay();
             UpdateCostDisplay();
+            DisplayCurrentPlayerStats();
         }
     }
 
@@ -126,6 +133,7 @@ public class StatTrainer : MonoBehaviour
             DeductGold(attackUpgradeCost);
             UpdateStatDisplay();
             UpdateCostDisplay();
+            DisplayCurrentPlayerStats();
         }
     }
 
@@ -137,6 +145,7 @@ public class StatTrainer : MonoBehaviour
             DeductGold(defenseUpgradeCost);
             UpdateStatDisplay();
             UpdateCostDisplay();
+            DisplayCurrentPlayerStats();
         }
     }
 
@@ -148,6 +157,7 @@ public class StatTrainer : MonoBehaviour
             DeductGold(critChanceUpgradeCost);
             UpdateStatDisplay();
             UpdateCostDisplay();
+            DisplayCurrentPlayerStats();
         }
     }
 
@@ -159,6 +169,7 @@ public class StatTrainer : MonoBehaviour
             DeductGold(regenRateUpgradeCost);
             UpdateStatDisplay();
             UpdateCostDisplay();
+            DisplayCurrentPlayerStats();
         }
     }
 
