@@ -208,9 +208,10 @@ MonoBehaviour:
   defense: 5
   moveSpeed: 1
   damageTextPrefab: {fileID: 1326090146640689267, guid: b28908ba1fd94f448a7691c11e51144d, type: 3}
-  floatSpeed: 0.5
+  critTextPrefab: {fileID: 5211827394840613784, guid: ea18446186c8c144095a53c8272c0de8, type: 3}
+  floatSpeed: 1
   fadeDuration: 1
-  offset: {x: -0.5, y: 0.5, z: 0}
+  offset: {x: -0.5, y: 0.5, z: -0.09}
 --- !u!114 &5954303827419785021
 MonoBehaviour:
   m_ObjectHideFlags: 0

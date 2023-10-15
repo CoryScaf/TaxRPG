@@ -4,7 +4,8 @@ using UnityEngine;
 using TMPro;
 public class EnemyStats : CharacterStats
 {
- public GameObject damageTextPrefab;  // Assign your prefab in the Inspector
+    public GameObject damageTextPrefab;  // Assign your prefab in the Inspector
+    public GameObject critTextPrefab; // Assign your critical hit text prefab in the Inspector
     public float floatSpeed = 1f;  // Speed of floating upwards
     public float fadeDuration = 1f;  // Duration of fading out
     public Vector3 offset = new Vector3(0, -1f, 0f); // Offset from the enemy's position where the text starts
@@ -20,16 +21,39 @@ public class EnemyStats : CharacterStats
         }
     }
 
-    public override void TakeDamage(int damage)
+    public void TakeDamage(int damage, float critChance)
     {
+        bool isCrit = Random.Range(0f, 1f) < critChance;
+
+        if (isCrit)
+        {
+            damage *= 2;
+        }
+
         base.TakeDamage(damage);
 
-        ShowDamageText(damage);
+        if (isCrit)
+        {
+            ShowCritText(damage);
+        }
+        else
+        {
+            ShowDamageText(damage);
+        }
 
-        if(this.currentHealth <= 0)
+        if (this.currentHealth <= 0)
         {
             Destroy(gameObject);
         }
+    }
+
+    void ShowCritText(int damage)
+    {
+        GameObject textObject = Instantiate(critTextPrefab, transform.position + offset, Quaternion.identity, canvas.transform);
+        TMP_Text tmpText = textObject.GetComponent<TMP_Text>();
+        tmpText.text = damage.ToString();
+        
+        StartCoroutine(FloatingAndFade(tmpText));
     }
 
     void ShowDamageText(int damage)
