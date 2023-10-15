@@ -213,6 +213,7 @@ MonoBehaviour:
   floatSpeed: 1
   fadeDuration: 1
   offset: {x: -0.5, y: 0.5, z: -0.09}
+  goldValue: 2
 --- !u!114 &5954303827419785021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,6 +232,7 @@ MonoBehaviour:
   chargeSpeed: 5
   chargeTime: 2
   cooldownTime: 5
+  invincibilityDur: 0.2
   whiteSprite: {fileID: 21300000, guid: a1e6f6f7c4d296d4b85cf167aa9a03df, type: 3}
   originalSprite: {fileID: -1843727076, guid: cad95c447fbb5bb4c9e4f76abe6d0db1, type: 3}
   knockbackForce: 5

@@ -780,11 +780,23 @@ MonoBehaviour:
   critChanceCostText: {fileID: 7448031506438426598}
   regenRateCostText: {fileID: 8975054048701087642}
   playerStatsText: {fileID: 456091711384550125}
+  taxesOwed: {fileID: 0}
+  runsLeft: {fileID: 0}
   maxHealthUpgradeCost: 5
   attackUpgradeCost: 2
   defenseUpgradeCost: 2
   critChanceUpgradeCost: 5
   regenRateUpgradeCost: 8
+  maxHealthBaseCost: 5
+  maxHealthScaleFactor: 0.1
+  attackBaseCost: 2
+  attackScaleFactor: 0.2
+  defenseBaseCost: 2
+  defenseScaleFactor: 0.2
+  critChanceBaseCost: 5
+  critChanceScaleFactor: 10
+  regenRateBaseCost: 8
+  regenRateScaleFactor: 0.5
 --- !u!1 &7701859071565583458
 GameObject:
   m_ObjectHideFlags: 0
@@ -1457,7 +1469,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7023249969652934867, guid: e2a16ae9afe93094b90839fe878977d2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnHoverAttackUpgrade
+      value: UpgradeAttack
       objectReference: {fileID: 0}
     - target: {fileID: 7023249969652934867, guid: e2a16ae9afe93094b90839fe878977d2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

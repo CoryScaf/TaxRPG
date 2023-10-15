@@ -10,7 +10,7 @@ public class EnemyStats : CharacterStats
     public float floatSpeed = 1f;  // Speed of floating upwards
     public float fadeDuration = 1f;  // Duration of fading out
     public Vector3 offset = new Vector3(0, -1f, 0f); // Offset from the enemy's position where the text starts
-
+    public int goldValue = 2;
     private Canvas canvas;
 
     private void Awake()
@@ -37,9 +37,21 @@ public class EnemyStats : CharacterStats
     {
         bool isCrit = Random.Range(0f, 1f) < critChance;
 
+        // Retrieve the critMultiplier from the player's PlayerStats
+        float critMultiplier = 2f;  // Default to 2 as before
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player)
+        {
+            PlayerStats playerStats = player.GetComponent<PlayerStats>();
+            if (playerStats)
+            {
+                critMultiplier = playerStats.critMultiplier;
+            }
+        }
+
         if (isCrit)
         {
-            damage *= 2;
+            damage = Mathf.RoundToInt(damage * critMultiplier);
         }
 
         base.TakeDamage(damage);
@@ -55,33 +67,51 @@ public class EnemyStats : CharacterStats
 
         if (this.currentHealth <= 0)
         {
-            if( SceneManager.GetActiveScene().name.Equals("BossScene")){
+            player.GetComponent<PlayerStats>().gold += goldValue;
+            player.GetComponent<PlayerStats>().UpdateGoldText();
+
+            if( SceneManager.GetActiveScene().name.Equals("BossScene"))
+            {
                 FindObjectOfType<GameManager>().EndEncounter(true);
-            }else{
+            }
+            else
+            {
                 Destroy(gameObject);
             }
-            
         }
     }
 
+
     void ShowCritText(int damage)
     {
-        GameObject textObject = Instantiate(critTextPrefab, transform.position + offset, Quaternion.identity, canvas.transform);
+        GameObject canvasObject = GameObject.FindGameObjectWithTag("text");
+        if (!canvasObject)
+        {
+            Debug.LogError("Canvas with tag 'TextCanvas' not found!");
+            return;
+        }
+
+        GameObject textObject = Instantiate(critTextPrefab, transform.position + offset, Quaternion.identity, canvasObject.transform);
         TMP_Text tmpText = textObject.GetComponent<TMP_Text>();
         tmpText.text = damage.ToString();
-        
         StartCoroutine(FloatingAndFade(tmpText));
     }
 
     void ShowDamageText(int damage)
     {
-        GameObject textObject = Instantiate(damageTextPrefab, transform.position + offset, Quaternion.identity, canvas.transform);
+        GameObject canvasObject = GameObject.FindGameObjectWithTag("text");
+        if (!canvasObject)
+        {
+            Debug.LogError("Canvas with tag 'TextCanvas' not found!");
+            return;
+        }
 
+        GameObject textObject = Instantiate(damageTextPrefab, transform.position + offset, Quaternion.identity, canvasObject.transform);
         TMP_Text tmpText = textObject.GetComponent<TMP_Text>();
         tmpText.text = damage.ToString();
-
         StartCoroutine(FloatingAndFade(tmpText));
     }
+
 
     IEnumerator FloatingAndFade(TMP_Text tmpText)
     {
@@ -99,14 +129,16 @@ public class EnemyStats : CharacterStats
             yield return null;
         }
 
-        Destroy(tmpText.gameObject);
+        Destroy(tmpText.gameObject); // Destroys the text object after the fade finishes.
     }
+
     public void scaleStats(int runs, float scalar)
     {
         int delta = (int)Mathf.Pow(runs,scalar);
         this.maxHealth += delta;
         this.attack += delta;
         this.defense +=  delta;
+        this.goldValue += delta;
         // ... (repeat for any other stats)
     }
 

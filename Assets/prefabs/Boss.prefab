@@ -111,6 +111,7 @@ MonoBehaviour:
   floatSpeed: 1
   fadeDuration: 1
   offset: {x: 0, y: -1, z: 0}
+  goldValue: 200
 --- !u!114 &5172288724835407825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,6 +132,14 @@ MonoBehaviour:
   chargeTime: 2
   cooldownTime: 2
   invincibilityDur: 0.2
+  rageLevel1Percent: 0.75
+  rageLevel2Percent: 0.5
+  rageLevel3Percent: 0.25
+  rageLevelCooldownMultiplier: 0.8
+  rageLevel: 0
+  circleAttackPrefab: {fileID: 0}
+  followAttackPrefab: {fileID: 0}
+  fastAttackPrefab: {fileID: 0}
   whiteSprite: {fileID: 21300000, guid: 9a76362a99c0d2340a55cbaf8b837a00, type: 3}
   originalSprite: {fileID: 21300000, guid: fbcbd2e95bedb69459e8808161aaadec, type: 3}
   knockbackForce: 10

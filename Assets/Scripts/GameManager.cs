@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public int taxAmount = 100;
     public int runsUntilTax = 4;
     public int runCount = 1;
-    public float difficultyScaler = 1.1f;
+    public float difficultyScaler = 1.2f;
     private bool isFirstStart = true;
 
     private void Awake()
@@ -37,7 +37,6 @@ public class GameManager : MonoBehaviour
             StartGame();
         }
     }
-
     public void StartGame()
     {
         isFirstStart = false; // set to false after the initial start
@@ -82,13 +81,19 @@ public class GameManager : MonoBehaviour
 
     void LoseLife()
     {
-        ResetStats();
+        ResetTemporaryStats();
         lives--;
-        if (lives <= 0)
+        if(lives < 0){
+            lives = 0;
+        }
+        Debug.Log(lives);
+        if (lives == 0)
         {
             SceneManager.LoadScene("GameOver");
+        }else{
+            SceneManager.LoadScene("lifeLost");
         }
-        SceneManager.LoadScene("lifeLost");
+        
     }
     public void ResetStats()
     {
@@ -142,43 +147,65 @@ public class GameManager : MonoBehaviour
         this.GetComponent<PlayerStats>().currentHealth = this.GetComponent<PlayerStats>().maxHealth;
     }
 
-    void GameOver()
+    public void GameOver()
     {
         // Reset all values for a new game.
-        runCount = 1;
-
+        lives = 4;
+        taxAmount = 100;
+        runsUntilTax = 4;
+        runCount = 0;
         //needs to reset player stats
+        ResetTemporaryStats();
+        ResetStats();
 
         LoadEncounterScene();  // start in an encounter
         // TODO: Load main menu or game over scene.
     }
     public void StartRun()
     {
+        PlayerCharacter player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCharacter>();
+        //update stat repository
+        this.GetComponent<PlayerStats>().CopyStats(player.playerStats);
+        
         FindObjectOfType<MapManager>().currentID = "1";
         LoadEncounterScene();  // start in an encounter
     }
 
     public void CompleteRun()
     {
+
         runCount++;
 
         PlayerStats playerStats = FindObjectOfType<PlayerStats>();
         //check if it's time to tax by run count, if they cant pay they lose 
-        // if(runCount == runsUntilTax){
-        //     
-        //     if(playerStats.gold >= taxAmount){
-        //         playerStats.gold -= taxAmount;
-        //     }else{
-        //         //game over scene into game over
-        //         //LoadSceneGameOver();
-        //         GameOver();
-        //     }
-        // }
-        //remove stats bought from the stat shop
-        ResetTemporaryStats();
-        SceneManager.LoadScene("training");
-        //heal player till full
-        playerStats.currentHealth = playerStats.maxHealth;
+        if(runCount == runsUntilTax){
+            
+            if(playerStats.gold >= taxAmount){
+                playerStats.gold -= taxAmount;
+                this.GetComponent<PlayerStats>().CopyStats(playerStats);
+                taxAmount += (int)(Mathf.Pow(runCount,1.1f) + playerStats.gold/2);
+                lives++;
+                runsUntilTax +=4;
+                
+                //remove stats bought from the stat shop
+                ResetTemporaryStats();
+                SceneManager.LoadScene("training");
+                //heal player till full
+                playerStats.currentHealth = playerStats.maxHealth;
+            }else{
+                //game over scene into game over
+                LoseAllLives();
+                return;
+                
+            }
+        }else{
+            //remove stats bought from the stat shop
+            ResetTemporaryStats();
+            SceneManager.LoadScene("training");
+            //heal player till full
+            playerStats.currentHealth = playerStats.maxHealth;
+        }
+
 
     }
 
@@ -191,7 +218,7 @@ public class GameManager : MonoBehaviour
     void LoseAllLives()
     {
         lives = 0;
-        GameOver();
+        SceneManager.LoadScene("GameOver");
     }
 
     public void LoadEncounterScene()

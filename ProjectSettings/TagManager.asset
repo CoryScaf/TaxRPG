@@ -6,6 +6,7 @@ TagManager:
   tags:
   - DamagingObject
   - CharacterWeapon
+  - text
   layers:
   - Default
   - TransparentFX

@@ -73,8 +73,8 @@ public class StatShop : MonoBehaviour
             case "Legendary": rarityMultiplier = 2f; break;
         }
         float randomPercent = Random.Range(0.01f, 0.2f);
-        int calculatedCost = Mathf.FloorToInt(baseCost * rarityMultiplier * randomPercent * playerStats.gold);
-        return Mathf.Max(calculatedCost, (int)(10*rarityMultiplier)*0); // Ensure minimum cost is 1
+        int calculatedCost = Mathf.FloorToInt(baseCost + (rarityMultiplier * randomPercent * playerStats.gold));
+        return Mathf.Max(calculatedCost, (int)(10*rarityMultiplier)); // Ensure minimum cost is 1
     }
 
     private void DisplayPlayerStats()
@@ -136,6 +136,7 @@ public class StatShop : MonoBehaviour
                 float boost = Mathf.Round(boostAmount * 0.01f * 100f) / 100f; // Converts the integer boostAmount to a float, rounded to 2 decimal places.
                 playerStats.critChance += boost;
                 playerStats.tempCritChance += boost;
+                playerStats.scaleCritDamage();
                 break;
             case "REG":
                 playerStats.regenRate += boostAmount;
@@ -145,6 +146,7 @@ public class StatShop : MonoBehaviour
     }
     public void DeductGold(int cost){
         playerStats.gold -= cost;
+        playerStats.UpdateGoldText();
     }
     public void LeaveShop(){
         GameManager gm = FindObjectOfType<GameManager>();

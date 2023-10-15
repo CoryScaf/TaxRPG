@@ -39,6 +39,7 @@ public class PlayerStats : CharacterStats
         if(this.tag == "Player"){
             PlayerStats statCopy = FindObjectOfType<GameManager>().GetComponent<PlayerStats>();
             this.CopyStats(statCopy);
+            scaleCritDamage();
         }
         if (healthBar == null)
         {
@@ -51,6 +52,7 @@ public class PlayerStats : CharacterStats
         // Initialize the gold text UI
         UpdateGoldText();
     }
+
     public void CopyStats(PlayerStats sourceStats)
     {
         if (sourceStats == null)
@@ -66,10 +68,16 @@ public class PlayerStats : CharacterStats
         this.critChance = sourceStats.critChance;
         this.regenRate = sourceStats.regenRate;
         this.gold = sourceStats.gold;
+        
+        this.tempMaxHealth = sourceStats.tempMaxHealth;
+        this.tempAttack = sourceStats.tempAttack;
+        this.tempDefense = sourceStats.tempDefense;
+        this.tempCritChance = sourceStats.tempCritChance;
+        this.tempRegenRate = sourceStats.tempRegenRate;
         // ... (repeat for any other stats)
     }
     // Update the gold text UI
-    private void UpdateGoldText()
+    public void UpdateGoldText()
     {
         if (goldText != null)
         {
@@ -78,16 +86,13 @@ public class PlayerStats : CharacterStats
     }
 
     // Method to apply permanent upgrades
-    public void ApplyPermanentUpgrade()
+    public void scaleCritDamage()
     {
-        int cost = 10;  // Example cost
-        if (gold >= cost)
-        {
-            // Upgrade logic, for example:
-            attack += 1;
-            gold -= cost;
-            UpdateGoldText();
+        float scalar =(critChance-1)/.5f;
+        if (scalar <= 0){
+            scalar = 0;
         }
+        critMultiplier = 2 +scalar;
     }
     public void RemoveTemporaryStats()
     {
