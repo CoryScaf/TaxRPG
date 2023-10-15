@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
 
         if (victory)
         {
-            ResetTemporaryStats();
+            
             // heal the player by their regen rate here
             PlayerCharacter player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCharacter>();
             player.Heal(player.playerStats.regenRate);
@@ -174,7 +174,8 @@ public class GameManager : MonoBehaviour
         //         GameOver();
         //     }
         // }
-
+        //remove stats bought from the stat shop
+        ResetTemporaryStats();
         SceneManager.LoadScene("training");
         //heal player till full
         playerStats.currentHealth = playerStats.maxHealth;
