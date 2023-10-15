@@ -58,12 +58,14 @@ public class MapNode : MonoBehaviour
                 PlayerCharacter player = FindObjectOfType<PlayerCharacter>();
                 if (player)
                 {
+                    PlayerStats statRepo = FindObjectOfType<GameManager>().GetComponent<PlayerStats>(); 
                     PlayerStats stats = player.GetComponent<PlayerStats>();
                     if (stats)
                     {
                         int healAmount = Mathf.FloorToInt(stats.currentHealth / 3);
                         player.Heal(healAmount);
                         Debug.Log($"Player healed by {healAmount} points.");
+                        statRepo.CopyStats(player.playerStats);
                     }
                     else
                     {
