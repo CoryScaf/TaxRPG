@@ -46,9 +46,10 @@ public class GameManager : MonoBehaviour
 
     public void EndEncounter(bool victory)
     {
-        
+
         if (victory)
         {
+            ResetTemporaryStats();
             // heal the player by their regen rate here
             PlayerCharacter player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCharacter>();
             player.Heal(player.playerStats.regenRate);
@@ -117,6 +118,30 @@ public class GameManager : MonoBehaviour
         instanceStats.currentHealth = instanceStats.maxHealth;
         this.GetComponent<PlayerStats>().currentHealth = this.GetComponent<PlayerStats>().maxHealth;
     }
+    public void ResetTemporaryStats()
+    {
+        // Find the player instance in the scene and get its PlayerStats component
+        PlayerCharacter playerInstance = FindObjectOfType<PlayerCharacter>();
+        if (!playerInstance)
+        {
+            Debug.LogError("No Player instance found in the scene!");
+            return;
+        }
+        PlayerStats instanceStats = playerInstance.GetComponent<PlayerStats>();
+
+        // Reset the temporary stats of the instance
+        instanceStats.RemoveTemporaryStats();
+
+        // Reset the temporary stats of the GameManager's PlayerStats component
+        this.GetComponent<PlayerStats>().RemoveTemporaryStats();
+
+        // Heal the player instance in the scene
+        instanceStats.currentHealth = instanceStats.maxHealth;
+
+        // Heal the GameManager's PlayerStats component (assuming it's meant to represent player stats)
+        this.GetComponent<PlayerStats>().currentHealth = this.GetComponent<PlayerStats>().maxHealth;
+    }
+
     void GameOver()
     {
         // Reset all values for a new game.
@@ -127,7 +152,8 @@ public class GameManager : MonoBehaviour
         LoadEncounterScene();  // start in an encounter
         // TODO: Load main menu or game over scene.
     }
-    public void StartRun(){
+    public void StartRun()
+    {
         FindObjectOfType<MapManager>().currentID = "1";
         LoadEncounterScene();  // start in an encounter
     }
@@ -136,23 +162,23 @@ public class GameManager : MonoBehaviour
     {
         runCount++;
 
-            PlayerStats playerStats = FindObjectOfType<PlayerStats>();
-            //check if it's time to tax by run count, if they cant pay they lose 
-            // if(runCount == runsUntilTax){
-            //     
-            //     if(playerStats.gold >= taxAmount){
-            //         playerStats.gold -= taxAmount;
-            //     }else{
-            //         //game over scene into game over
-            //         //LoadSceneGameOver();
-            //         GameOver();
-            //     }
-            // }
-            
-            SceneManager.LoadScene("training");
-            //heal player till full
-            playerStats.currentHealth = playerStats.maxHealth;
- 
+        PlayerStats playerStats = FindObjectOfType<PlayerStats>();
+        //check if it's time to tax by run count, if they cant pay they lose 
+        // if(runCount == runsUntilTax){
+        //     
+        //     if(playerStats.gold >= taxAmount){
+        //         playerStats.gold -= taxAmount;
+        //     }else{
+        //         //game over scene into game over
+        //         //LoadSceneGameOver();
+        //         GameOver();
+        //     }
+        // }
+
+        SceneManager.LoadScene("training");
+        //heal player till full
+        playerStats.currentHealth = playerStats.maxHealth;
+
     }
 
     void IncreaseDifficulty()

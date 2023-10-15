@@ -8,7 +8,7 @@ public class PlayerStats : CharacterStats
     public int tempAttack;
     public int tempDefense;
     public int tempMaxHealth;
-    public int tempCritChance;
+    public float tempCritChance;
     public int tempRegenRate;
     
     // New properties for critical hits and health regeneration

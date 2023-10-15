@@ -133,8 +133,9 @@ public class StatShop : MonoBehaviour
                 playerStats.tempMaxHealth += boostAmount;
                 break;
             case "CRIT":
-                playerStats.critChance += boostAmount;
-                playerStats.tempCritChance += boostAmount;
+                float boost = Mathf.Round(boostAmount * 0.01f * 100f) / 100f; // Converts the integer boostAmount to a float, rounded to 2 decimal places.
+                playerStats.critChance += boost;
+                playerStats.tempCritChance += boost;
                 break;
             case "REG":
                 playerStats.regenRate += boostAmount;
