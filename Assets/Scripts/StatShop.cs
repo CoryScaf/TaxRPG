@@ -145,7 +145,10 @@ public class StatShop : MonoBehaviour
     public void DeductGold(int cost){
         playerStats.gold -= cost;
     }
-
+    public void LeaveShop(){
+        GameManager gm = FindObjectOfType<GameManager>();
+        gm.EndEncounter(true);
+    }
 
 
 }

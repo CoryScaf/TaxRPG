@@ -44,7 +44,6 @@ public class MapNode : MonoBehaviour
     public void HandleEncounter()
     {
         MapManager.instance.SetCurrentID(uniqueID);
-        encounterType = this.encounterType;
 
         switch (encounterType)
         {

@@ -119,8 +119,9 @@ public class EnemyBehavior : MonoBehaviour
                 Vector2 knockbackOrigin = playerTransform.position;
                 GetComponent<AudioSource>().Play();
    
+                PlayerStats playerStats = FindObjectOfType<PlayerStats>();
                 // Use TakeDamage method in EnemyStats
-                enemyStats.TakeDamage(weaponInfo.damage);
+                enemyStats.TakeDamage(weaponInfo.damage,playerStats.critChance);
 
                 // Knockback logic can still be handled here
                 knockbackDirection = (transform.position - (Vector3)knockbackOrigin).normalized;

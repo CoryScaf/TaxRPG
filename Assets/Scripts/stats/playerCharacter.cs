@@ -6,7 +6,7 @@ public class PlayerCharacter : MonoBehaviour
 {
     private CharacterMovement movementComponent;
     private CameraController cameraController;
-    private PlayerStats playerStats; // Reference to the PlayerStats script
+    public PlayerStats playerStats; // Reference to the PlayerStats script
     private bool isInvincible = false;
 
     [HideInInspector]

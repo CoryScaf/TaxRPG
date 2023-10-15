@@ -296,6 +296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d82ed23b2f952c4b8c589ca27663f4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerStats: {fileID: 0}
   isInKnockback: 0
   knockbackDuration: 0.3
   whiteSprite: {fileID: 21300000, guid: 176d8180a7f9b4748a2ad502ae06bcef, type: 3}
@@ -330,7 +331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  attack: 10
+  attack: 100
   defense: 5
   moveSpeed: 5
   tempAttack: 0
