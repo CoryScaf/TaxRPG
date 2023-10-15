@@ -70,13 +70,21 @@ public class EnemyStats : CharacterStats
             player.GetComponent<PlayerStats>().gold += goldValue;
             player.GetComponent<PlayerStats>().UpdateGoldText();
 
-            if( SceneManager.GetActiveScene().name.Equals("BossScene"))
+            // Disable sprite renderer and collider
+            GetComponent<SpriteRenderer>().enabled = false;
+            Collider2D[] colliders = GetComponents<Collider2D>();
+            foreach (Collider2D collider in colliders)
+            {
+                collider.enabled = false;
+            }
+
+            if (SceneManager.GetActiveScene().name.Equals("BossScene"))
             {
                 FindObjectOfType<GameManager>().EndEncounter(true);
             }
             else
             {
-                Destroy(gameObject);
+                Destroy(gameObject, fadeDuration + 1); // Add a slight buffer to the fade duration to ensure the text fades completely
             }
         }
     }
