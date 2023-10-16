@@ -30,7 +30,10 @@ public class SpawnController : MonoBehaviour
     public float didntSpawnPreviousIncrease = 0.05f;
 
     public int curWave = 0;
+    public GameObject spawnMarker;
+    public float spawnAfterSeconds = 1.0f;
     private List<GameObject> spawnedEnemies;
+    private int stillSpawningCount = 0;
 
 
     void Start()
@@ -55,6 +58,7 @@ public class SpawnController : MonoBehaviour
 
     void Update()
     {
+        if(stillSpawningCount > 0) return;
         if(curWave < waveCount) 
         {
             foreach(GameObject spawned in spawnedEnemies.ToList()) 
@@ -72,8 +76,7 @@ public class SpawnController : MonoBehaviour
 
                 if (shouldSpawn)
                 {
-                    GameObject enemyToSpawn = GetWeightedRandomEnemyPrefab();
-                    spawnedEnemies.Add(Instantiate(enemyToSpawn, spawnLocations[i].position, Quaternion.identity));
+                    StartCoroutine(SpawnEnemy(i));
                 }
             }
 
@@ -93,6 +96,17 @@ public class SpawnController : MonoBehaviour
 
             FindObjectOfType<GameManager>().EndEncounter(true);
         }
+    }
+
+    private IEnumerator SpawnEnemy(int i) {
+        stillSpawningCount++;
+        GameObject marker = Instantiate(spawnMarker, spawnLocations[i].position, Quaternion.identity);
+        yield return new WaitForSeconds(spawnAfterSeconds);
+        Destroy(marker);
+
+        GameObject enemyToSpawn = GetWeightedRandomEnemyPrefab();
+        spawnedEnemies.Add(Instantiate(enemyToSpawn, spawnLocations[i].position, Quaternion.identity));
+        stillSpawningCount--;
     }
 
     private GameObject GetWeightedRandomEnemyPrefab()

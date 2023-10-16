@@ -395,6 +395,8 @@ MonoBehaviour:
   chanceIncreasePerWave: 0.1
   didntSpawnPreviousIncrease: 0.05
   curWave: 0
+  spawnMarker: {fileID: 588546994051557615, guid: 22eb2d0ab5e434c4fabf59862f4ef840, type: 3}
+  spawnAfterSeconds: 1
 --- !u!82 &4663632037278433624
 AudioSource:
   m_ObjectHideFlags: 0
