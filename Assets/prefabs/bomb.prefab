@@ -187,7 +187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionRadius: 2
   explosionDuration: 3
-  explosionEffect: {fileID: 0}
+  explosionEffect: {fileID: 4916430181417070107, guid: 243c9ba9284be764ab466623e69aeacc, type: 3}
   blinkDuration: 0.2
   numberOfBlinks: 3
   originalSprite: {fileID: 1013446859, guid: 9b21ff8103ecbd7458c79981cca136ea, type: 3}

@@ -110,7 +110,12 @@ public class RangedEnemyBehavior : MonoBehaviour
     private void ShootProjectile()
     {
         Vector2 fireDirection = (playerTransform.position - transform.position).normalized;
-        GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        float angle = Vector2.Angle(fireDirection.normalized, Vector3.right)-90;
+        if(fireDirection.normalized.y < 0.0f) {
+            angle *= -1;
+            angle += 180;
+        }
+        GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.AngleAxis(angle, Vector3.forward));
         projectile.GetComponent<Rigidbody2D>().velocity = fireDirection * projectileSpeed;
 
         // Set the state back to maintaining distance after shooting a single projectile

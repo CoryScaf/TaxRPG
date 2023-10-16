@@ -23,6 +23,7 @@ public class BigZombieBehavior : MonoBehaviour
     public float knockbackForce = 10f;
     public float knockbackDuration = 0.5f;
     public AudioSource hitSound;
+    public AudioSource slamSound;
 
     void Start()
     {
@@ -54,6 +55,7 @@ public class BigZombieBehavior : MonoBehaviour
     {
         Debug.Log("attack");
         animator.SetTrigger("Attack");
+        slamSound.PlayDelayed(0.2f);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
