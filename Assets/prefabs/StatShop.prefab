@@ -302,11 +302,11 @@ RectTransform:
   - {fileID: 6359354067402695942}
   - {fileID: 2013766577012473968}
   - {fileID: 8123050529563588734}
-  - {fileID: 6725067673070886432}
   - {fileID: 8515633627465351038}
   - {fileID: 4243233573980969497}
   - {fileID: 7729808062104999419}
   - {fileID: 6865089101415057432}
+  - {fileID: 6725067673070886432}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -364,6 +364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e832889c07232548be758b27b1bcfc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  costMultiplier: 1.5
   playerStats: {fileID: 0}
   statTexts:
   - {fileID: 6658078326046946864}
