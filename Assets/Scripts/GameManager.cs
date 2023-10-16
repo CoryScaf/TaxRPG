@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public int lives = 4;
     public int taxAmount = 100;
     public int runsUntilTax = 4;
-    public int runCount = 1;
+    public int runCount = 0;
     public float difficultyScaler = 1.2f;
     private bool isFirstStart = true;
 

@@ -15,15 +15,10 @@ public class EnemyStats : CharacterStats
     public AudioSource deathSound;
     public Slider healthbar;
     private Canvas canvas;
+    public delegate void OnDeathDelegate();
+    public event OnDeathDelegate OnDeath;
 
-    private void Awake()
-    {
-        canvas = GetComponentInChildren<Canvas>();
-        if(!canvas)
-        {
-            Debug.LogError("No Canvas child found on the GameObject!");
-        }
-    }
+
     protected override void Start()
     {
 
@@ -74,9 +69,14 @@ public class EnemyStats : CharacterStats
         {
             ShowDamageText(damage);
         }
-
         if (this.currentHealth <= 0)
         {
+            if(OnDeath != null)
+            {
+                OnDeath.Invoke();
+            }
+
+            
             deathSound.Play();
             player.GetComponent<PlayerStats>().gold += goldValue;
             player.GetComponent<PlayerStats>().UpdateGoldText();

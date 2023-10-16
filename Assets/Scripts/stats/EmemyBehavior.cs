@@ -36,11 +36,11 @@ public class EnemyBehavior : MonoBehaviour
 
     // Private fields to handle knockback state
     private Vector2 knockbackDirection;
-    private EnemyStats enemyStats;
+    public EnemyStats enemyStats;
     private Rigidbody2D rb;
     private bool isInvincible;
 
-    private void Start()
+    public void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         enemyStats = GetComponent<EnemyStats>();
@@ -48,7 +48,7 @@ public class EnemyBehavior : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private void Update()
+    public void Update()
     {
         float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
 
