@@ -44,7 +44,7 @@ public class SpawnController : MonoBehaviour
         if (gameManager && gameManager.isFirstStart)
         {
             zombieWeight = 1f;
-            batWeight = 0.5f;
+            batWeight = 0.7f;
             bigZombieWeight = 0f;
             explodingZombieWeight = 0f;
             daggerMagerWeight = 0f;

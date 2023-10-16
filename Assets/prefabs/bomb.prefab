@@ -185,8 +185,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcf7498f0e4cb614a83bc3d0684d3949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionRadius: 2
-  explosionDuration: 3
+  explosionRadius: 3.5
+  explosionDuration: 1.5
   explosionEffect: {fileID: 4916430181417070107, guid: 243c9ba9284be764ab466623e69aeacc, type: 3}
   blinkDuration: 0.2
   numberOfBlinks: 3

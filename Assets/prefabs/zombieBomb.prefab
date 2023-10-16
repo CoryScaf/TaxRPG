@@ -429,8 +429,8 @@ MonoBehaviour:
   attackRange: 3
   followRange: 6
   detectionRange: 10
-  chargeSpeed: 5
-  chargeTime: 2
+  chargeSpeed: 8
+  chargeTime: 1
   cooldownTime: 2
   invincibilityDur: 0.2
   whiteSprite: {fileID: 21300000, guid: 96eead8f82c0e324f8805208c5354980, type: 3}

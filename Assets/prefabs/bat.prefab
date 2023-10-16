@@ -106,7 +106,7 @@ MonoBehaviour:
   maxHealth: 60
   attack: 5
   defense: 3
-  moveSpeed: 2.5
+  moveSpeed: 6
   damageTextPrefab: {fileID: 1326090146640689267, guid: b28908ba1fd94f448a7691c11e51144d, type: 3}
   critTextPrefab: {fileID: 5211827394840613784, guid: ea18446186c8c144095a53c8272c0de8, type: 3}
   floatSpeed: 1

@@ -48,7 +48,7 @@ public class BatBehavior : MonoBehaviour
                 if (distanceToPlayer <= followRange)
                 {
                     Vector2 moveDirection = (playerTransform.position - transform.position).normalized;
-                    transform.position += (Vector3)moveDirection * 5 * Time.deltaTime;
+                    transform.position += (Vector3)moveDirection * this.GetComponent<EnemyStats>().moveSpeed * Time.deltaTime;
                 }
                 else if (distanceToPlayer > detectionRange)
                 {
