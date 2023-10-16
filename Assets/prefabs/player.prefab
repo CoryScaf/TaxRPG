@@ -286,7 +286,7 @@ MonoBehaviour:
   isRolling: 0
   rollDelay: 0.2
   rollSound: {fileID: 4695189799953079008}
-  rollInvincibilityDuration: 0.5
+  rollInvincibilityDuration: 0.4
 --- !u!114 &4625524197744370376
 MonoBehaviour:
   m_ObjectHideFlags: 0

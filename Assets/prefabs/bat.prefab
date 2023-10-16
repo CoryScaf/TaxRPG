@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1586980414296835014}
   - component: {fileID: 403665211434009366}
   - component: {fileID: 645105179633389717}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: bat
   m_TagString: DamagingObject
   m_Icon: {fileID: 0}
@@ -426,7 +426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 970e8420a90fcb04e847edbbbe9b961f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followRange: 8
+  followRange: 12
   detectionRange: 12
   invincibilityDur: 0.2
   whiteSprite: {fileID: 21300000, guid: 9c950a6b16035cc4589b5e5d01cdfb3c, type: 3}
