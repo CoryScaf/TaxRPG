@@ -37,18 +37,28 @@ public class StatShop : MonoBehaviour
         for (int i = 0; i < statTexts.Length; i++)
         {
             int randomStatIndex = Random.Range(0, statNames.Length);
+            string chosenStat = statNames[randomStatIndex];
 
             boostAmounts[i] = GenerateBoostAmount(out string rarity, out Color rarityColor);
+            
+            if (chosenStat == "CRIT")
+            {
+                float boostPercentage = Mathf.Round(boostAmounts[i] * 0.01f * 100f) / 100f; // Converts to a float, rounded to 2 decimal places.
+                boostTexts[i].text = "+" + boostPercentage;
+            }
+            else
+            {
+                boostTexts[i].text = "+" + boostAmounts[i];
+            }
+            
             costs[i] = CalculateCost(boostAmounts[i], rarity);
-
-            statTexts[i].text = statNames[randomStatIndex];
-            boostTexts[i].text = "+" + boostAmounts[i];
+            statTexts[i].text = chosenStat;
             costTexts[i].text = costs[i].ToString();
             rarityTexts[i].color = rarityColor;
             rarityTexts[i].text = rarity;
-
         }
     }
+
 
     private int GenerateBoostAmount(out string rarity, out Color rarityColor)
     {
