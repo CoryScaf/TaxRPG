@@ -718,7 +718,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyStats: {fileID: 0}
-  abilityRange: 6
+  abilityRange: 4
   abilityCooldown: 6
   moveSpeed: 1.5
   whiteSprite: {fileID: -1184095219, guid: 9b21ff8103ecbd7458c79981cca136ea, type: 3}
