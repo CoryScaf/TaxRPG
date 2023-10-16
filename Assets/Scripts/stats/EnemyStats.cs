@@ -95,7 +95,9 @@ public class EnemyStats : CharacterStats
             }
             else
             {
-                //Destroy(gameObject, fadeDuration + 1); // Add a slight buffer to the fade duration to ensure the text fades completely
+                if(gameObject){
+                    Destroy(gameObject, fadeDuration + 1); // Add a slight buffer to the fade duration to ensure the text fades completely
+                }
             }
         }
     }

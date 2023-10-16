@@ -32,9 +32,25 @@ public class SpawnController : MonoBehaviour
     public int curWave = 0;
     private List<GameObject> spawnedEnemies;
 
+
     void Start()
     {
         spawnedEnemies = new List<GameObject>(spawnLocations.Count);
+
+        GameManager gameManager = FindObjectOfType<GameManager>();
+        if (gameManager && gameManager.isFirstStart)
+        {
+            zombieWeight = 1f;
+            batWeight = 0.5f;
+            bigZombieWeight = 0f;
+            explodingZombieWeight = 0f;
+            daggerMagerWeight = 0f;
+
+            waveCount = 1;  // Set wave count to 1
+
+            // Set isFirstStart to false in the GameManager to ensure it doesn't get used again.
+            gameManager.isFirstStart = false;
+        }
     }
 
     void Update()
@@ -68,7 +84,10 @@ public class SpawnController : MonoBehaviour
             foreach(GameObject spawned in spawnedEnemies.ToList()) 
             {
                 if(spawned != null){
-                    if(spawned.GetComponent<EnemyStats>().currentHealth > 0) return;
+                    if(spawned.GetComponent<EnemyStats>().currentHealth > 0) {
+                        Debug.Log(spawned.name);
+                        return;
+                    }
                 }
             }
 
