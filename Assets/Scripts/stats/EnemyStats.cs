@@ -163,7 +163,7 @@ public class EnemyStats : CharacterStats
         int delta = (int)Mathf.Pow(runs,scalar);
         this.maxHealth += delta;
         this.attack += delta;
-        this.defense +=  delta;
+        this.defense +=  2+delta;
         this.goldValue += delta;
         // ... (repeat for any other stats)
     }
