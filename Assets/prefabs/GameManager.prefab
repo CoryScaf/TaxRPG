@@ -53,6 +53,7 @@ MonoBehaviour:
   runsUntilTax: 4
   runCount: 0
   difficultyScaler: 1.1
+  isFirstStart: 1
 --- !u!114 &348516405325445471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,9 +66,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43d11f887e110c944913cc382d706d5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 250
   attack: 20
-  defense: 5
+  defense: 10
   moveSpeed: 5
   tempAttack: 0
   tempDefense: 0
