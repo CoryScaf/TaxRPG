@@ -17,7 +17,7 @@ public class CharacterStats : MonoBehaviour
 
     public virtual void TakeDamage(int damage)
     {
-        int damageTaken = Mathf.Clamp(damage - defense, 0, int.MaxValue); // Defense reduces damage
+        int damageTaken = (int)((damage*100)/(100f+defense));
         currentHealth -= damageTaken;
 
         if (currentHealth <= 0)
