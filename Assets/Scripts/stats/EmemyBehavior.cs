@@ -69,7 +69,7 @@ public class EnemyBehavior : MonoBehaviour
                 else if (distanceToPlayer <= followRange)
                 {
                     Vector2 moveDirection = (playerTransform.position - transform.position).normalized;
-                    transform.position += (Vector3)moveDirection * Time.deltaTime; // Assume enemy has a defined move speed
+                    transform.position += (Vector3)moveDirection * this.GetComponent<EnemyStats>().moveSpeed *Time.deltaTime; // Assume enemy has a defined move speed
                 }
                 break;
 

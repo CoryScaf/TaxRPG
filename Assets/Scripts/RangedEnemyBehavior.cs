@@ -62,13 +62,13 @@ public class RangedEnemyBehavior : MonoBehaviour
                 Vector2 moveDirection;
                 if (distanceToPlayer > minDistanceFromPlayer)
                 {
-                    moveDirection = (playerTransform.position - transform.position).normalized;
+                    moveDirection = (playerTransform.position - transform.position).normalized *2f;
                 }
                 else
                 {
-                    moveDirection = (transform.position - playerTransform.position).normalized;
+                    moveDirection = (transform.position - playerTransform.position).normalized * moveSpeed;
                 }
-                transform.position += (Vector3)moveDirection * moveSpeed * Time.deltaTime;
+                transform.position += (Vector3)moveDirection  * Time.deltaTime;
 
                 // Checking if enemy's health is above 0 before allowing attacks
                 if (distanceToPlayer <= shootingRange && Time.time - lastAttackTime >= fireRate && enemyStats.currentHealth > 0)

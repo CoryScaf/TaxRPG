@@ -373,7 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa9c53a7a30d39b4ab8b50c9aa0b8e57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 150
+  maxHealth: 180
   attack: 8
   defense: 7
   moveSpeed: 1
@@ -718,7 +718,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyStats: {fileID: 0}
-  abilityRange: 4
+  abilityRange: 5
   abilityCooldown: 6
   moveSpeed: 1.5
   whiteSprite: {fileID: 21300000, guid: 8eb43f5d405ecb147ba2c882373bc4f4, type: 3}

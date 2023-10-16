@@ -103,10 +103,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa9c53a7a30d39b4ab8b50c9aa0b8e57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 80
+  maxHealth: 100
   attack: 10
   defense: 5
-  moveSpeed: 1
+  moveSpeed: 1.5
   damageTextPrefab: {fileID: 1326090146640689267, guid: b28908ba1fd94f448a7691c11e51144d, type: 3}
   critTextPrefab: {fileID: 5211827394840613784, guid: ea18446186c8c144095a53c8272c0de8, type: 3}
   floatSpeed: 1
