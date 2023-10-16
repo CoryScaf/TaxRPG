@@ -222,7 +222,7 @@ MonoBehaviour:
   batPrefab: {fileID: 2071077558995289453, guid: e35c8f69c6f92fb43864e8e85b86b101, type: 3}
   batWeight: 0.1
   bigZombiePrefab: {fileID: 2071077558995289453, guid: 50e4dd7f119abd0468ab053f562e8338, type: 3}
-  bigZombieWeight: 1
+  bigZombieWeight: 0.6
   explodingZombiePrefab: {fileID: 2071077558995289453, guid: 66ad8e3a24543034db15e2c51cf95f50, type: 3}
   explodingZombieWeight: 0.2
   daggerMagerPrefab: {fileID: 2071077558995289453, guid: eeee03a877b4a77469b1f12e4335030e, type: 3}
