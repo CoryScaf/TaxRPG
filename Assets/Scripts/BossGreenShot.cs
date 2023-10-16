@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossGreenShot : MonoBehaviour
 {
-    public float rotationSpeed = 1.0f;
+    public float rotationSpeed = 10.0f;
     public float distanceTillUnlock = 1.0f;
     public float perfectSoundDistance = 3.0f;
     public float maxSoundDistance = 6.0f;
@@ -23,7 +23,7 @@ public class BossGreenShot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(new Vector3(0,0,rotationSpeed));
+        transform.Rotate(new Vector3(0,0,rotationSpeed * Time.deltaTime));
         if(target != null && !spinSound.isPlaying) {
             float dist = Vector2.Distance(transform.position, target.position);
             float volume = perfectSoundDistance / dist;

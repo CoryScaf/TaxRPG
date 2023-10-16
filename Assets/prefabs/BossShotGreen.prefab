@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3571fc9879763ed4381cc8150535be1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 1
+  rotationSpeed: 800
   distanceTillUnlock: 2
   perfectSoundDistance: 3
   maxSoundDistance: 6
