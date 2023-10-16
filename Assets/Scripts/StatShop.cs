@@ -52,13 +52,27 @@ public class StatShop : MonoBehaviour
 
     private int GenerateBoostAmount(out string rarity, out Color rarityColor)
     {
-        int rarityIndex = Random.Range(0, 5);
+        // Calculate total stats of the player
+        float totalStats = playerStats.attack/3 + playerStats.defense/2 + playerStats.maxHealth/8; // Add any other stats you wish to consider
+
+        // Adjust rarity index based on player's total stats
+        int rarityBias = (int)Mathf.Min(totalStats / 100, 4);  // Arbitrary, adjust 100 based on your game balance
+        int rarityIndex = Random.Range(0, 5 - rarityBias) + rarityBias;
+
         string[] rarities = { "Normal", "Uncommon", "Rare", "Epic", "Legendary" };
         int[] minMaxBoosts = { 1, 5, 10, 15, 20 };
+
+        // Adjust minMaxBoosts based on player's total stats
+        for (int i = 0; i < minMaxBoosts.Length; i++)
+        {
+            minMaxBoosts[i] += (int)(totalStats / 50);  // Again, adjust 50 based on your game balance
+        }
+
         rarity = rarities[rarityIndex];
         rarityColor = rarityColors[rarityIndex];
         return Random.Range(minMaxBoosts[rarityIndex], minMaxBoosts[rarityIndex] + 5);
     }
+
 
     private int CalculateCost(int boostAmount, string rarity)
     {

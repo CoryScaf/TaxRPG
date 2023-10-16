@@ -364,7 +364,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e832889c07232548be758b27b1bcfc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  costMultiplier: 1.5
   playerStats: {fileID: 0}
   statTexts:
   - {fileID: 6658078326046946864}
@@ -1096,6 +1095,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2285523965635291072}
+    - target: {fileID: 6707308460217975630, guid: 62afd6ffaf34033408d2c1b40548e7e1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BuyStat1
+      objectReference: {fileID: 0}
     - target: {fileID: 7684895887214678744, guid: 62afd6ffaf34033408d2c1b40548e7e1, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
