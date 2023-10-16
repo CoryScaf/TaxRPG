@@ -11,6 +11,7 @@ public class BossBlackShot : MonoBehaviour
 
     void Start() {
         enemyStats = GetComponent<EnemyStats>();
+        GetComponent<AudioSource>().Play();
     }
     // Update is called once per frame
     void Update()

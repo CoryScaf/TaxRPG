@@ -17,6 +17,7 @@ public class PlayerCharacter : MonoBehaviour
 
     public Sprite whiteSprite;  // The white version of the character sprite
     public Sprite originalSprite;  // Reference to the original sprite
+    public AudioSource hitSound;
 
     private Color originalColor;
     void Start()
@@ -98,8 +99,10 @@ public class PlayerCharacter : MonoBehaviour
             // Handle player taking damage, knockback, etc. here
 
             //shake camera
-            if(!isInvincible)
+            if(!isInvincible) {
                 cameraController.TriggerShake();
+                hitSound.Play();
+            }
 
             playerStats.TakeDamage(damage, knockbackDirection);
             // Start the knockback effect

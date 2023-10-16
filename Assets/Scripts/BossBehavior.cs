@@ -33,6 +33,7 @@ public class BossBehavior : MonoBehaviour
 
     public Sprite whiteSprite;
     public Sprite originalSprite;
+    public AudioSource hitSound;
 
     private State currentState = State.Idle;
     private Vector2 chargeDirection;
@@ -139,8 +140,8 @@ public class BossBehavior : MonoBehaviour
 
         spriteRenderer.color = Color.white;
 
-        chargeDirection = (playerTransform.position - transform.position).normalized;
-        float startTime = Time.time;
+        //chargeDirection = (playerTransform.position - transform.position).normalized;
+        //float startTime = Time.time;
 
         //while (Time.time - startTime < chargeTime)
         //{
@@ -158,7 +159,7 @@ public class BossBehavior : MonoBehaviour
             if (weaponInfo)
             {
                 Vector2 knockbackOrigin = playerTransform.position;
-                GetComponent<AudioSource>().Play();
+                hitSound.Play();
    
                 PlayerStats playerStats = FindObjectOfType<PlayerStats>();
                 // Use TakeDamage method in EnemyStats

@@ -49,5 +49,6 @@ public class BossRedShot : MonoBehaviour
         dir = (target.position - origin.position).normalized;
         tracking = false;
         shoot = true;
+        GetComponent<AudioSource>().Play();
     }
 }
