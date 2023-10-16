@@ -36,8 +36,15 @@ public class GameManager : MonoBehaviour
         {
             StartGame();
         }
-        DestroyChildrenUnderTextTaggedCanvas();
+        StartCoroutine(WaitDestroyText());
     }
+        private IEnumerator WaitDestroyText()
+    {
+        // Wait for the map scene to fully load and all objects to be initialized
+        yield return new WaitForSeconds(2f);  // You can adjust this time as necessary
+         DestroyChildrenUnderTextTaggedCanvas();
+    }
+
     public void StartGame()
     {
         
@@ -70,7 +77,6 @@ public class GameManager : MonoBehaviour
 
     public void EndEncounter(bool victory)
     {
-       DestroyChildrenUnderTextTaggedCanvas();
         if (victory)
         {
              isFirstStart = false; // set to false after the initial start

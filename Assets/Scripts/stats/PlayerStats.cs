@@ -53,6 +53,9 @@ public class PlayerStats : CharacterStats
         // Initialize the gold text UI
         UpdateGoldText();
     }
+    void Update(){
+        UpdateGoldText();
+    }
 
     public void CopyStats(PlayerStats sourceStats)
     {

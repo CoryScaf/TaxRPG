@@ -15,6 +15,9 @@ public class die : MonoBehaviour
         currentLife.text = $"{gameManager.lives + 1}";  // <-- It should be "lives", not "life"
         newLife.text = $"{gameManager.lives}";
     }
+    void Update(){
+         Time.timeScale = 1;
+    }
 
     public void dies()
     {
