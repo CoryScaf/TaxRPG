@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  attack: 25
+  attack: 16
   defense: 5
   moveSpeed: 5
   damageTextPrefab: {fileID: 0}
@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  attack: 25
+  attack: 16
   defense: 5
   moveSpeed: 5
   damageTextPrefab: {fileID: 0}
@@ -474,9 +474,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa9c53a7a30d39b4ab8b50c9aa0b8e57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 200
-  attack: 15
-  defense: 10
+  maxHealth: 150
+  attack: 8
+  defense: 7
   moveSpeed: 1
   damageTextPrefab: {fileID: 1326090146640689267, guid: b28908ba1fd94f448a7691c11e51144d, type: 3}
   critTextPrefab: {fileID: 5211827394840613784, guid: ea18446186c8c144095a53c8272c0de8, type: 3}
@@ -819,13 +819,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyStats: {fileID: 0}
-  abilityRange: 8
-  abilityCooldown: 4
+  abilityRange: 6
+  abilityCooldown: 6
   moveSpeed: 1.5
   whiteSprite: {fileID: -1184095219, guid: 9b21ff8103ecbd7458c79981cca136ea, type: 3}
   originalSprite: {fileID: 1783646506, guid: 9b21ff8103ecbd7458c79981cca136ea, type: 3}
   invincibilityDur: 0.2
-  knockbackForce: 2
+  knockbackForce: 3
   knockbackDuration: 0.5
   hitSound: {fileID: 1586980414296835014}
 --- !u!1 &3367767469080182276
@@ -926,7 +926,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  attack: 25
+  attack: 16
   defense: 5
   moveSpeed: 5
   damageTextPrefab: {fileID: 0}
@@ -1035,7 +1035,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  attack: 25
+  attack: 16
   defense: 5
   moveSpeed: 5
   damageTextPrefab: {fileID: 0}
@@ -1191,7 +1191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  attack: 25
+  attack: 16
   defense: 5
   moveSpeed: 5
   damageTextPrefab: {fileID: 0}
@@ -1300,7 +1300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  attack: 25
+  attack: 16
   defense: 5
   moveSpeed: 5
   damageTextPrefab: {fileID: 0}
@@ -1456,7 +1456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  attack: 25
+  attack: 16
   defense: 5
   moveSpeed: 5
   damageTextPrefab: {fileID: 0}
@@ -1612,7 +1612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  attack: 25
+  attack: 16
   defense: 5
   moveSpeed: 5
   damageTextPrefab: {fileID: 0}

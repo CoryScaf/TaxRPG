@@ -205,7 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa9c53a7a30d39b4ab8b50c9aa0b8e57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 80
+  maxHealth: 7
   attack: 2
   defense: 5
   moveSpeed: 1
@@ -541,6 +541,6 @@ MonoBehaviour:
   originalSprite: {fileID: -1789103841, guid: cad95c447fbb5bb4c9e4f76abe6d0db1, type: 3}
   invincibilityDur: 0.2
   enemyStats: {fileID: 0}
-  knockbackForce: 10
+  knockbackForce: 5
   knockbackDuration: 0.5
   hitSound: {fileID: 1586980414296835014}

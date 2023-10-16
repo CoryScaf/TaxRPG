@@ -205,7 +205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  attack: 20
+  attack: 12
   defense: 5
   moveSpeed: 5
   damageTextPrefab: {fileID: 0}
