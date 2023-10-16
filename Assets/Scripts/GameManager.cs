@@ -38,7 +38,8 @@ public class GameManager : MonoBehaviour
         }
         string currentSceneName = SceneManager.GetActiveScene().name;
 
-            StartCoroutine(WaitDestroyText());
+        
+        //StartCoroutine(WaitDestroyText());
 
     }
         private IEnumerator WaitDestroyText()
@@ -89,6 +90,7 @@ public class GameManager : MonoBehaviour
             //update stat repository
             this.GetComponent<PlayerStats>().CopyStats(player.playerStats);
             LoadMapScene();
+            DestroyChildrenUnderTextTaggedCanvas();
             StartCoroutine(WaitAndNotifyNodeCompletion());
         }
         else

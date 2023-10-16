@@ -55,6 +55,7 @@ public class PlayerStats : CharacterStats
     }
     void Update(){
         UpdateGoldText();
+        scaleCritDamage();
     }
 
     public void CopyStats(PlayerStats sourceStats)

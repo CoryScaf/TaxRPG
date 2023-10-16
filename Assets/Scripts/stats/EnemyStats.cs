@@ -96,6 +96,7 @@ public class EnemyStats : CharacterStats
             else
             {
                 if(gameObject){
+                    
                     Destroy(gameObject, fadeDuration + 1); // Add a slight buffer to the fade duration to ensure the text fades completely
                 }
             }
@@ -143,6 +144,7 @@ public class EnemyStats : CharacterStats
 
     IEnumerator FloatingAndFade(TMP_Text tmpText)
     {
+        GameObject Text = tmpText.gameObject;
         float elapsed = 0f;
         Color originalColor = tmpText.color;
 
@@ -156,8 +158,9 @@ public class EnemyStats : CharacterStats
             elapsed += Time.deltaTime;
             yield return null;
         }
-
-        //Destroy(tmpText.gameObject); // Destroys the text object after the fade finishes.
+        if(Text){
+            Destroy(Text); // Destroys the text object after the fade finishes.
+        }
     }
 
     public void scaleStats(int runs, float scalar)
