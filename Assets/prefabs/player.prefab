@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3325427817854949628}
   - component: {fileID: 8445260158448726396}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: gold
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -762,7 +762,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!114 &7729783847299055137
 MonoBehaviour:

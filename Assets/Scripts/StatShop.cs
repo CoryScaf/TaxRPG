@@ -22,7 +22,7 @@ public class StatShop : MonoBehaviour
     private void Start()
     {
 
-        playerStats = FindObjectOfType<PlayerStats>();
+        playerStats = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerStats>();
         if (!playerStats)
         {
             Debug.LogError("PlayerStats not found in the scene!");
@@ -170,7 +170,6 @@ public class StatShop : MonoBehaviour
     }
     public void DeductGold(int cost){
         playerStats.gold -= cost;
-        playerStats.UpdateGoldText();
     }
     public void LeaveShop(){
         GameManager gm = FindObjectOfType<GameManager>();

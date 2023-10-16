@@ -42,7 +42,7 @@ public class StatTrainer : MonoBehaviour
     private void Start()
     {
         defaultColor = maxHealthStatText.color;
-        playerStats = FindObjectOfType<PlayerStats>();
+        playerStats = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerStats>();
 
         if (!playerStats)
         {
@@ -63,9 +63,6 @@ public class StatTrainer : MonoBehaviour
     void Update()
     {
         DisplayCurrentPlayerStats();
-        //update current gold
-        PlayerCharacter player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCharacter>();
-        player.playerStats.UpdateGoldText();
     }
     public void StartRun()
     {

@@ -48,8 +48,10 @@ public class MapNode : MonoBehaviour
         switch (encounterType)
         {
             case EncounterType.Normal:
-                int randomCombatScene = Random.Range(1, 4);
-                SceneManager.LoadScene("CombatScene" + randomCombatScene);
+                string[] combatScenes = { "CombatScene1", "CombatScene2", "CombatScene2", "CombatScene3", "CombatScene3" };
+                int randomIndex = Random.Range(0, combatScenes.Length);
+                SceneManager.LoadScene(combatScenes[randomIndex]);
+
                 break;
             case EncounterType.Boss:
                 SceneManager.LoadScene("BossScene");
