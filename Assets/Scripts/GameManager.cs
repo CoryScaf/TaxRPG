@@ -36,16 +36,41 @@ public class GameManager : MonoBehaviour
         {
             StartGame();
         }
+        DestroyChildrenUnderTextTaggedCanvas();
     }
     public void StartGame()
     {
         
         LoadEncounterScene();  // start in an encounter
     }
+    public void DestroyChildrenUnderTextTaggedCanvas()
+    {
+        // Find the canvas in the scene with the tag "text"
+        GameObject canvas = GameObject.FindGameObjectWithTag("text");
+
+        // If canvas is found
+        if (canvas)
+        {
+            // Get all children under the canvas
+            int childCount = canvas.transform.childCount;
+            for (int i = childCount - 1; i >= 0; i--)
+            {
+                // Access the child GameObject directly from the Transform component
+                GameObject childObject = canvas.transform.GetChild(i).gameObject;
+                
+                // Destroy the child game object
+                Destroy(childObject);
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Canvas with the tag 'text' not found in the scene.");
+        }
+    }
 
     public void EndEncounter(bool victory)
     {
-       
+       DestroyChildrenUnderTextTaggedCanvas();
         if (victory)
         {
              isFirstStart = false; // set to false after the initial start
