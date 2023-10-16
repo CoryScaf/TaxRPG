@@ -37,14 +37,9 @@ public class GameManager : MonoBehaviour
             StartGame();
         }
         string currentSceneName = SceneManager.GetActiveScene().name;
-        if (currentSceneName != "CombatScene1" && 
-            currentSceneName != "CombatScene2" && 
-            currentSceneName != "CombatScene3" && 
-            currentSceneName != "startScene" && 
-            currentSceneName != "BossScene")
-        {
+
             StartCoroutine(WaitDestroyText());
-        }
+
     }
         private IEnumerator WaitDestroyText()
     {
@@ -193,6 +188,7 @@ public class GameManager : MonoBehaviour
         taxAmount = 100;
         runsUntilTax = 4;
         runCount = 0;
+        isFirstStart = true;
         //needs to reset player stats
         ResetTemporaryStats();
         ResetStats();

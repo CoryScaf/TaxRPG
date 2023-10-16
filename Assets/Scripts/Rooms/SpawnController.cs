@@ -6,12 +6,12 @@ using UnityEngine;
 public class SpawnController : MonoBehaviour
 {
     public List<Transform> spawnLocations;
-    public TilemapCollider2D tilemapCollider;
+  //  public TilemapCollider2D tilemapCollider;
 
     // Enemy Prefabs and Weights
     public GameObject zombiePrefab;
     public float zombieWeight = 1.0f;
-
+ 
     public GameObject batPrefab;
     public float batWeight = 1.0f;
 
