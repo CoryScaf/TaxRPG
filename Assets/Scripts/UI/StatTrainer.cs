@@ -9,6 +9,12 @@ public class StatTrainer : MonoBehaviour
     public TextMeshProUGUI taxesOwed;
     public TextMeshProUGUI runsLeft;
     public TextMeshProUGUI lives;
+    public int maxHealthIncrement = 10;
+    public int attackIncrement = 5;
+    public int defenseIncrement = 5;
+    public float critChanceIncrement = 0.02f;
+    public int regenRateIncrement = 1;
+
     public int maxHealthUpgradeCost = 5;
     public int attackUpgradeCost = 2;
     public int defenseUpgradeCost = 2;
@@ -99,33 +105,35 @@ public class StatTrainer : MonoBehaviour
 
     public void OnHoverMaxHealthUpgrade()
     {
-        maxHealthStatText.text = (playerStats.maxHealth + 10).ToString();
+        maxHealthStatText.text = (playerStats.maxHealth + maxHealthIncrement).ToString();
         maxHealthStatText.color = Color.green;
     }
 
     public void OnHoverAttackUpgrade()
     {
-        attackStatText.text = (playerStats.attack + 5).ToString();
+        attackStatText.text = (playerStats.attack + attackIncrement).ToString();
         attackStatText.color = Color.green;
     }
 
     public void OnHoverDefenseUpgrade()
     {
-        defenseStatText.text = (playerStats.defense + 5).ToString();
+        defenseStatText.text = (playerStats.defense + defenseIncrement).ToString();
         defenseStatText.color = Color.green;
     }
 
     public void OnHoverCritChanceUpgrade()
     {
-        critChanceStatText.text = ((playerStats.critChance + 0.05f) * 100).ToString("F1") + "%";
+        critChanceStatText.text = ((playerStats.critChance + critChanceIncrement) * 100).ToString("F1") + "%";
         critChanceStatText.color = Color.green;
     }
 
     public void OnHoverRegenRateUpgrade()
     {
-        regenRateStatText.text = (playerStats.regenRate + 1).ToString();
+        regenRateStatText.text = (playerStats.regenRate + regenRateIncrement).ToString();
         regenRateStatText.color = Color.green;
     }
+
+
     public void OnExitHoverMaxHealthUpgrade()
     {
         UpdateStatDisplay();
@@ -160,7 +168,7 @@ public class StatTrainer : MonoBehaviour
     {
         if (CanAfford(maxHealthUpgradeCost))
         {
-            playerStats.maxHealth += 10;
+            playerStats.maxHealth += maxHealthIncrement;
             DeductGold(maxHealthUpgradeCost);
             UpdateStatDisplay();
             maxHealthUpgradeCost = maxHealthBaseCost + Mathf.CeilToInt(maxHealthScaleFactor * playerStats.maxHealth);
@@ -173,7 +181,7 @@ public class StatTrainer : MonoBehaviour
     {
         if (CanAfford(attackUpgradeCost))
         {
-            playerStats.attack += 5;
+            playerStats.attack += attackIncrement;
             DeductGold(attackUpgradeCost);
             UpdateStatDisplay();
             attackUpgradeCost = attackBaseCost + Mathf.CeilToInt(attackScaleFactor * playerStats.attack);
@@ -186,7 +194,7 @@ public class StatTrainer : MonoBehaviour
     {
         if (CanAfford(defenseUpgradeCost))
         {
-            playerStats.defense += 5;
+            playerStats.defense += defenseIncrement;
             DeductGold(defenseUpgradeCost);
             UpdateStatDisplay();
             defenseUpgradeCost = defenseBaseCost + Mathf.CeilToInt(defenseScaleFactor * playerStats.defense);
@@ -199,8 +207,8 @@ public class StatTrainer : MonoBehaviour
     {
         if (CanAfford(critChanceUpgradeCost))
         {
-            playerStats.critChance += 0.02f;
-            playerStats.scaleCritDamage();
+            playerStats.critChance += critChanceIncrement;
+            playerStats.scaleCritDamage();  // Assuming this method exists to scale critical damage
             DeductGold(critChanceUpgradeCost);
             UpdateStatDisplay();
             critChanceUpgradeCost = critChanceBaseCost + Mathf.CeilToInt(critChanceScaleFactor * playerStats.critChance);
@@ -213,7 +221,7 @@ public class StatTrainer : MonoBehaviour
     {
         if (CanAfford(regenRateUpgradeCost))
         {
-            playerStats.regenRate += 1;
+            playerStats.regenRate += regenRateIncrement;
             DeductGold(regenRateUpgradeCost);
             UpdateStatDisplay();
             regenRateUpgradeCost = regenRateBaseCost + Mathf.CeilToInt(regenRateScaleFactor * playerStats.regenRate);
@@ -221,6 +229,7 @@ public class StatTrainer : MonoBehaviour
             DisplayCurrentPlayerStats();
         }
     }
+
 
 
     private bool CanAfford(int cost)
