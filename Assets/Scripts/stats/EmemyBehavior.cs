@@ -32,6 +32,7 @@ public class EnemyBehavior : MonoBehaviour
     // Public fields to customize knockback force and duration
     public float knockbackForce = 10f;
     public float knockbackDuration = 0.5f;
+    public AudioSource hitSound;
 
     // Private fields to handle knockback state
     private Vector2 knockbackDirection;
@@ -117,7 +118,7 @@ public class EnemyBehavior : MonoBehaviour
             if (weaponInfo)
             {
                 Vector2 knockbackOrigin = playerTransform.position;
-                GetComponent<AudioSource>().Play();
+                hitSound.Play();
    
                 PlayerStats playerStats = FindObjectOfType<PlayerStats>();
                 // Use TakeDamage method in EnemyStats

@@ -15,6 +15,7 @@ public class CharacterMovement : MonoBehaviour
     public bool isRolling = false;
     private float nextRollTime = 0f;  // Time when the next roll is permitted
     public float rollDelay = 1f;      // Delay in seconds between rolls
+    public AudioSource rollSound;
     private PlayerCharacter playerCharacter;
     public float rollInvincibilityDuration = 0.5f;  // Duration of invincibility during a roll
 
@@ -87,6 +88,7 @@ public class CharacterMovement : MonoBehaviour
 
     private IEnumerator RollCoroutine()
     {
+        rollSound.Play();
         isRolling = true;
         rb.velocity = Vector2.zero;
         Vector2 rollVelocity = lastMoveDirection.normalized * rollSpeed;

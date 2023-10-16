@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 public class EnemyStats : CharacterStats
 {
     public GameObject damageTextPrefab;  // Assign your prefab in the Inspector
@@ -11,6 +12,8 @@ public class EnemyStats : CharacterStats
     public float fadeDuration = 1f;  // Duration of fading out
     public Vector3 offset = new Vector3(0, -1f, 0f); // Offset from the enemy's position where the text starts
     public int goldValue = 2;
+    public AudioSource deathSound;
+    public Slider healthbar;
     private Canvas canvas;
 
     private void Awake()
@@ -31,6 +34,10 @@ public class EnemyStats : CharacterStats
             scaleStats(runs, scalar);
         }
         currentHealth = maxHealth;
+        if(healthbar != null) {
+            healthbar.maxValue = maxHealth;
+            healthbar.value = currentHealth;
+        }
     }
 
     public void TakeDamage(int damage, float critChance)
@@ -55,6 +62,9 @@ public class EnemyStats : CharacterStats
         }
 
         base.TakeDamage(damage);
+        if(healthbar != null) {
+            healthbar.value = currentHealth;
+        }
 
         if (isCrit)
         {
@@ -67,6 +77,7 @@ public class EnemyStats : CharacterStats
 
         if (this.currentHealth <= 0)
         {
+            deathSound.Play();
             player.GetComponent<PlayerStats>().gold += goldValue;
             player.GetComponent<PlayerStats>().UpdateGoldText();
 
@@ -80,13 +91,20 @@ public class EnemyStats : CharacterStats
 
             if (SceneManager.GetActiveScene().name.Equals("BossScene"))
             {
-                FindObjectOfType<GameManager>().EndEncounter(true);
+                StartCoroutine(killedBoss());
             }
             else
             {
                 Destroy(gameObject, fadeDuration + 1); // Add a slight buffer to the fade duration to ensure the text fades completely
             }
         }
+    }
+
+    private IEnumerator killedBoss() {
+        while(deathSound.isPlaying) {
+            yield return null;
+        }
+        FindObjectOfType<GameManager>().EndEncounter(true);
     }
 
 
