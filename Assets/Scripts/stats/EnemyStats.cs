@@ -95,7 +95,7 @@ public class EnemyStats : CharacterStats
             }
             else
             {
-                Destroy(gameObject, fadeDuration + 1); // Add a slight buffer to the fade duration to ensure the text fades completely
+                //Destroy(gameObject, fadeDuration + 1); // Add a slight buffer to the fade duration to ensure the text fades completely
             }
         }
     }
@@ -155,7 +155,7 @@ public class EnemyStats : CharacterStats
             yield return null;
         }
 
-        Destroy(tmpText.gameObject); // Destroys the text object after the fade finishes.
+        //Destroy(tmpText.gameObject); // Destroys the text object after the fade finishes.
     }
 
     public void scaleStats(int runs, float scalar)

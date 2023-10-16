@@ -36,7 +36,15 @@ public class GameManager : MonoBehaviour
         {
             StartGame();
         }
-        StartCoroutine(WaitDestroyText());
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        if (currentSceneName != "CombatScene1" && 
+            currentSceneName != "CombatScene2" && 
+            currentSceneName != "CombatScene3" && 
+            currentSceneName != "startScene" && 
+            currentSceneName != "BossScene")
+        {
+            StartCoroutine(WaitDestroyText());
+        }
     }
         private IEnumerator WaitDestroyText()
     {
